@@ -10,7 +10,18 @@ Temp
 *.pidb
 Build
 
+#################
+## LaTex
+#################
 
+*.aux
+*.txt
+*.synctex.gz
+*.dvi
+*.out
+*.nav
+*.toc
+*.snm
 
 #################
 ## Eclipse
