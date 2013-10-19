@@ -205,6 +205,7 @@ GameObject:
   - 114: {fileID: 293018890}
   - 114: {fileID: 293018889}
   - 114: {fileID: 293018888}
+  - 114: {fileID: 293018898}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: MainCamera
@@ -224,6 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07a53e23300ce745946b494bd8c11e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
   mKeepARCameraAlive: 0
   mKeepTrackableBehavioursAlive: 0
   mKeepTextRecoBehaviourAlive: 0
@@ -240,6 +242,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 772bc9e597a4a8849b5ad887b7fef10f, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   BackgroundCameraPrefab: {fileID: 2000000, guid: b46dcef02cf484544addced9f937c948,
     type: 2}
@@ -259,6 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67cbfb9153674e84d894cc7d53ffe720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
   mDataSetsToActivate:
   - ARmadio
   mDataSetsToLoad:
@@ -275,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47f92041efbb4b429a4eafca855ebe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
 --- !u!114 &293018892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,6 +291,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4114ca95ba12f394a8ad43abfc86745c, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   CameraDeviceModeSetting: -1
   MaxSimultaneousImageTargets: 1
@@ -358,6 +364,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &293018898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 293018887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f165a2e4215e9004f8573d6841d3a283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startRotating: 0
+  component: {fileID: 0}
 --- !u!43 &344362166
 Mesh:
   m_ObjectHideFlags: 0
@@ -787,6 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a917f0af64a6423093132dab321c15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
 --- !u!33 &1902918126
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -807,6 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e246bd21db86f8346bc66895a661fcc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1902918128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,6 +839,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cadfb90286c81fd42a6785e4e7cd3024, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   mTrackableName: BasicMarker
   mPreviousScale: {x: 200, y: 200, z: 200}
