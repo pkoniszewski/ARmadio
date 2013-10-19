@@ -72,6 +72,8 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
         foreach (Renderer component in rendererComponents)
         {
             component.enabled = true;
+			RotateObject.Instance.component = component;
+			RotateObject.Instance.startRotating = true;
         }
 
         // Enable colliders:
@@ -93,6 +95,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
         foreach (Renderer component in rendererComponents)
         {
             component.enabled = false;
+			RotateObject.Instance.startRotating = false;
         }
 
         // Disable colliders:
