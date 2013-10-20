@@ -205,7 +205,6 @@ GameObject:
   - 114: {fileID: 293018890}
   - 114: {fileID: 293018889}
   - 114: {fileID: 293018888}
-  - 114: {fileID: 293018898}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: MainCamera
@@ -226,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
   mKeepARCameraAlive: 0
   mKeepTrackableBehavioursAlive: 0
   mKeepTextRecoBehaviourAlive: 0
@@ -242,6 +242,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 772bc9e597a4a8849b5ad887b7fef10f, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   BackgroundCameraPrefab: {fileID: 2000000, guid: b46dcef02cf484544addced9f937c948,
@@ -263,6 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
   mDataSetsToActivate:
   - ARmadio
   mDataSetsToLoad:
@@ -280,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
 --- !u!114 &293018892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +294,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4114ca95ba12f394a8ad43abfc86745c, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   CameraDeviceModeSetting: -1
@@ -364,19 +368,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!114 &293018898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 293018887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f165a2e4215e9004f8573d6841d3a283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startRotating: 0
-  component: {fileID: 0}
 --- !u!43 &344362166
 Mesh:
   m_ObjectHideFlags: 0
@@ -664,9 +655,9 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 5a02f97198f821d4faebc27bb7445b68, type: 3}
   m_PrefabInternal: {fileID: 263151387}
   m_GameObject: {fileID: 909437390}
-  m_LocalRotation: {x: .504354298, y: .503695965, z: .449975044, w: .537995994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: .0682617202, y: .263329506, z: 3.03913116}
-  m_LocalScale: {x: 32.4168282, y: 32.4168243, z: 32.4168167}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 1902918124}
 --- !u!1001 &1587060777
@@ -774,6 +765,7 @@ GameObject:
   - 114: {fileID: 1902918127}
   - 33: {fileID: 1902918126}
   - 114: {fileID: 1902918125}
+  - 114: {fileID: 1902918130}
   m_Layer: 0
   m_Name: ImageTarget
   m_TagString: Untagged
@@ -807,6 +799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
 --- !u!33 &1902918126
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -828,6 +821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1902918128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -839,6 +833,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cadfb90286c81fd42a6785e4e7cd3024, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   mTrackableName: BasicMarker
@@ -867,3 +862,15 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+--- !u!114 &1902918130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1902918123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f165a2e4215e9004f8573d6841d3a283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allowMovement: 0
