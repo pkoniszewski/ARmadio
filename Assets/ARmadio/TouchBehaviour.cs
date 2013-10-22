@@ -14,6 +14,10 @@ public class TouchBehaviour : MonoBehaviour
 	public bool move = false;
 	
 	
+	private float StartX=0;
+	private float StopX=0;
+	
+	
 	//obiekty kontrolujace i kontrolowane
 	private GameObject ChairObj;
 	private GUITexture controls;
@@ -70,12 +74,14 @@ public class TouchBehaviour : MonoBehaviour
                  * */
 				
                 Plane targetPlane = new Plane(transform.up, transform.position);
-                // Dla kaĹĽdego wykrytego dotkniÄ™cia (multitouch wspierany)
+
                 foreach (Touch touch in Input.touches)
                 {
 					
-					//operacje dla rotacji (na razie w jednym kierunku)
+					//operacje dla rotacji
+					
 					if(rotate) {
+
 						if(touch.phase == TouchPhase.Began && controls.HitTest(touch.position)){
 								move = true;
 								rotate = false;
@@ -84,6 +90,7 @@ public class TouchBehaviour : MonoBehaviour
 						
 	                    //Gets the ray at position where the screen is touched
 	                    Ray ray = Camera.main.ScreenPointToRay(touch.position);
+						
 	                    //Gets the position of ray along plane
 	                    float dist = 0.0f;
 	                    //Intersects ray with the plane. Sets dist to distance along the ray wher intersects
@@ -91,18 +98,32 @@ public class TouchBehaviour : MonoBehaviour
 	
 	                    //Returns point dist along the ray.
 	                    Vector3 planePoint = ray.GetPoint(dist);
-	
-	                    //True if finger touch began.
+						
+						
+						//przeczytaj koordynaty,jesli palec dotknie ekranu
 	                    if (touch.phase == TouchPhase.Began)
 	                    {
-	                        // Ustaw ostatni punkt na obecny
-	                        lastPlanePoint = planePoint;
+							StartX = touch.position.x;
+
 	                    }
 	                    else if (touch.phase == TouchPhase.Moved)
 	                    {
-	                        // Tu widac typowo jeden kierunek
-	                        ChairObj.transform.Rotate(Vector3.forward, 15 * Time.deltaTime);
-	                        lastPlanePoint = planePoint;
+							
+							//odczytaj koncowe koordynaty
+							StopX = touch.position.x;
+							
+							float diff = StartX - StopX;
+							
+							//w zaleznosci od roznicy obrot w prawo albo lewo
+							if( diff > 0) {
+								ChairObj.transform.Rotate(Vector3.forward, 60 * Time.deltaTime);
+							}
+							else {
+								ChairObj.transform.Rotate(-Vector3.forward, 60 * Time.deltaTime);	
+							}
+							
+							Debug.LogError("diff: "+diff.ToString()+"  STARTX:"+StartX.ToString()+"STOPX:"+StopX.ToString());
+							
 	                    }
 
 						return;
