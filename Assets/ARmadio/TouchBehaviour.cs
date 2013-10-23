@@ -26,8 +26,33 @@ public class TouchBehaviour : MonoBehaviour
 	
 	//obiekty kontrolujace i kontrolowane
 	private GameObject ChairObj;
-	private GUITexture controls;
-
+	//private GUITexture controls;
+	private GUITexture gui_move;
+	private GUITexture gui_rotate;
+	private GUITexture gui_scale;
+	
+	//textury buttonow
+	private Texture2D t_move_2;
+	private Texture2D t_move_1;
+	private Texture2D t_scale_2;
+	private Texture2D t_scale_1;
+	private Texture2D t_rotate_2;
+	private Texture2D t_rotate_1;
+	private string texture;
+	
+	
+	
+	//wczytanie png'ow z resource'a.
+	void LoadTextures() {
+		
+		t_move_2 = Resources.Load ("move_butt2") as Texture2D;
+		t_move_1 = Resources.Load ("move_butt") as Texture2D;
+		t_scale_1 = Resources.Load ("scale_butt") as Texture2D;
+		t_scale_2 = Resources.Load ("scale_butt2") as Texture2D;
+		t_rotate_1 = Resources.Load ("rotate_butt") as Texture2D;
+		t_rotate_2 = Resources.Load ("rotate_butt2") as Texture2D;		
+	}
+	
     void Awake()
     {
         m_Instance = this;
@@ -37,13 +62,25 @@ public class TouchBehaviour : MonoBehaviour
     {
 		//szukanie i przypisanie 
 		ChairObj = GameObject.Find("Chair");
-        controls = (GameObject.Find("controls").GetComponent(typeof(GUITexture))) as GUITexture;
-    }
+        //controls = (GameObject.Find("controls").GetComponent(typeof(GUITexture))) as GUITexture;
+		
+		//kontrolki
+		gui_move = (GameObject.Find("gui_move").GetComponent(typeof(GUITexture))) as GUITexture;
+		gui_rotate = (GameObject.Find("gui_rotate").GetComponent(typeof(GUITexture))) as GUITexture;
+		gui_scale = (GameObject.Find("gui_scale").GetComponent(typeof(GUITexture))) as GUITexture;
+		
+		LoadTextures();
+		gui_rotate.texture = t_rotate_2;
+		
 
+    }
+	
+	
 
     void Update()
     {
         if (touchToMove)
+
         {
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
 
@@ -65,32 +102,52 @@ public class TouchBehaviour : MonoBehaviour
                  * Odwoluje sie do znalezionego wczesniej ChairObjecta, nie do elementow z renderera
                  * nie wiem czy ta petla jest potrzebna tam.
                  * 
-                 * Domyslnie ustawione jest rotate na true, i move na false, ale trzeba to sprawdzic, bo mozna to
-                 * ustawiac z poziomu edytora Unity (jak beda dwa zaznaczone to raczej sie sypnie)
-                 * 
-                 * 
-                 * 
-                 * 
-                 * 
-                 * 
                  * */
 				
                 Plane targetPlane = new Plane(transform.up, transform.position);
-
-                
 					
+                	//operacje sterujace dla gui_buttons:
+					if(Input.touches[0].phase == TouchPhase.Began && gui_rotate.HitTest(Input.touches[0].position)) {
+						if(!rotate) {
+							rotate = true;
+							gui_rotate.texture = t_rotate_2;
+							move = false;
+							gui_move.texture = t_move_1;
+							scale = false;
+							gui_scale.texture = t_scale_1;	
+						}
+						
+					}
+					else if(Input.touches[0].phase == TouchPhase.Began && gui_move.HitTest(Input.touches[0].position)) {
+						if(!move) {
+							rotate = false;
+							gui_rotate.texture = t_rotate_1;
+							move = true;
+							gui_move.texture = t_move_2;
+							scale = false;
+							gui_scale.texture = t_scale_1;	
+						}
+						
+					}
+					else if(Input.touches[0].phase == TouchPhase.Began && gui_scale.HitTest(Input.touches[0].position)) {
+						if(!scale) {
+							rotate = false;
+							gui_rotate.texture = t_rotate_1;
+							move = false;
+							gui_move.texture = t_move_1;
+							scale = true;
+							gui_scale.texture = t_scale_2;	
+						}
+						
+					}
+
 					//operacje dla rotacji
 					
 					if(rotate) {
+						
+					
 						foreach (Touch touch in Input.touches)
-                		{
-							if(touch.phase == TouchPhase.Began && controls.HitTest(touch.position)){
-									move = true;
-									rotate = false;
-									scale = false;
-									return;
-							}						
-							
+                		{							
 		                    //Gets the ray at position where the screen is touched
 		                    Ray ray = Camera.main.ScreenPointToRay(touch.position);
 							
@@ -125,7 +182,7 @@ public class TouchBehaviour : MonoBehaviour
 									ChairObj.transform.Rotate(-Vector3.forward, 60 * Time.deltaTime);	
 								}
 								
-								Debug.LogError("diff: "+diff.ToString()+"  STARTX:"+StartX.ToString()+"STOPX:"+StopX.ToString()+"__localscale:"+ChairObj.transform.localScale.ToString());
+								//Debug.LogError("diff: "+diff.ToString()+"  STARTX:"+StartX.ToString()+"STOPX:"+StopX.ToString()+"__localscale:"+ChairObj.transform.localScale.ToString());
 							}
 							return;
 	                    }
@@ -134,15 +191,10 @@ public class TouchBehaviour : MonoBehaviour
 					}
 					
 					else if(move) {
+						
+						
 						foreach (Touch touch in Input.touches)
-                		{
-							if(touch.phase == TouchPhase.Began && controls.HitTest(touch.position)){
-									move = false;
-									scale = true;
-									rotate = false;									
-									return;
-							}						
-							
+                		{							
 		                    //Gets the ray at position where the screen is touched
 		                    Ray ray = Camera.main.ScreenPointToRay(touch.position);
 		                    //Gets the position of ray along plane
@@ -177,21 +229,9 @@ public class TouchBehaviour : MonoBehaviour
 					 * Na tej podstawie skaluje obraz w gore albo w dol. 
 					 * jest ustawiona minimalna skala, zeby nie zniknal. Gornej nie ustawialem.
 					 * 
-					 * 
-					 * 
-					 * 
-					 * 
 					 */
 					
 						var tapCount = Input.touchCount;
-					
-					//przelaczenie do next trybu dopoki nie ma menu
-						if(Input.touches[0].phase == TouchPhase.Began && controls.HitTest(Input.touches[0].position)){
-							move = false;
-							scale = false;
-							rotate = true;									
-							return;
-						}
 					
 					//wczytanie 2 dotkniec w tym samym czasie
 						if(tapCount > 1) {
@@ -222,20 +262,14 @@ public class TouchBehaviour : MonoBehaviour
 									}
 									ChairObj.transform.localScale -= new Vector3(0.0009F, 0.0009F, 0.0009F);
 								}
-								
-							
+
 								//przepisanie nowych wartosci na poprzednie, zachowuje plynnosc
 								scaleStart1 = touch1.position;
 								scaleStart2 = touch2.position;
 								scaleStartDiff = Vector2.Distance(touch1.position,touch2.position);
 							
 							}
-							
-							
-						
-						}
-					
-						
+						}	
 					}
                 }
             }
