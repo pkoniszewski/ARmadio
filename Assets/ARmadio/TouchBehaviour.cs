@@ -13,10 +13,16 @@ public class TouchBehaviour : MonoBehaviour
 	public static bool rotate = true;
 	public static bool move = false;
 	public static bool scale = false;
+	public static bool changeActive = false;
+	public static GameObject activeObj;
 	
 	//zmienne do rotacji
 	private float startX=0;
 	private float stopX=0;
+	
+	//zmienne do przesuwania
+	private Vector2 startPos1 = new Vector2(0,Screen.height/2);
+	private Vector2 startPos2 = new Vector2(0,Screen.height/2);
 	
 	//zmienne do skalowania
 	private Vector2 scaleStart1;
@@ -37,6 +43,7 @@ public class TouchBehaviour : MonoBehaviour
 		//szukanie i przypisanie
 		//tutaj bedzie pobranie z ref od GUI aktywnego obiektu
 		moveObj = GameObject.Find("Chair");
+		
     }
 	
 	
@@ -61,7 +68,18 @@ public class TouchBehaviour : MonoBehaviour
                  * TODO 
                  * 
                  * */
+				if(changeActive) {
+					activeObj.SetActive(true);
+					
+					Instantiate(moveObj);
+					Destroy (moveObj);
+					changeActive = false;
+					
 				
+				
+				}
+			
+			
                 Plane targetPlane = new Plane(transform.up, transform.position);
 
 					//operacje dla rotacji		
@@ -107,8 +125,10 @@ public class TouchBehaviour : MonoBehaviour
 					else if(move) {
 						
 						
-						foreach (Touch touch in Input.touches)
-                		{							
+						//foreach (Touch touch in Input.touches)
+                		//{
+						if (Input.touchCount == 1) {
+							var touch = Input.GetTouch(0);
 		                    //Gets the ray at position where the screen is touched
 		                    Ray ray = Camera.main.ScreenPointToRay(touch.position);
 		                    //Gets the position of ray along plane
@@ -133,6 +153,53 @@ public class TouchBehaviour : MonoBehaviour
 		                    }
 	
 							return;
+						}
+						else if(Input.touchCount == 2) {
+							var touch1 = Input.GetTouch(0);
+						    var touch2 = Input.GetTouch(1);
+							
+							Debug.LogError("diff: 1:"+touch1.phase.ToString()+" 2: "+touch2.phase.ToString());
+							//zebranie startowych pozycji
+							if(touch1.phase == TouchPhase.Began) {
+								startPos1 = touch1.position;
+							}
+							if(touch2.phase == TouchPhase.Began) {
+								startPos2 = touch2.position;
+							}
+					
+							//VAR1: pierwszy stoi, ruszamy drugim
+							if(touch1.phase == TouchPhase.Stationary && touch2.phase == TouchPhase.Moved) {
+								float diff = startPos2.y - touch2.position.y;
+								Vector3 old = moveObj.transform.position;
+								if (diff > 0) {
+									old.y -= Time.deltaTime;
+									moveObj.transform.position = old;
+								}
+								else {
+									old.y += Time.deltaTime;
+									moveObj.transform.position = old;
+								}
+						
+								//Debug.LogError("diff:"+diff.ToString()+" Y="+touch2.position.y.ToString()+" StartY:"+startPos2.y+" objZ="+moveObj.transform.position.y.ToString());
+								
+							}
+							//var2: pierwszy rusza, drugi stoi
+							if(touch2.phase == TouchPhase.Stationary && touch1.phase == TouchPhase.Moved) {
+								float diff = startPos1.y - touch2.position.y;
+								Vector3 old = moveObj.transform.position;
+								if (diff > 0) {
+									old.y -= Time.deltaTime;
+									moveObj.transform.position = old;
+								}
+								else {
+									old.y += Time.deltaTime;
+									moveObj.transform.position = old;
+								}
+						
+								//Debug.LogError("diff:"+diff.ToString()+" Y="+touch2.position.y.ToString()+" StartY:"+startPos2.y+" objZ="+moveObj.transform.position.y.ToString());
+							}
+							
+							
 						}
 					}
 					
