@@ -75,6 +75,11 @@ public class DataSetLoadBehaviour : MonoBehaviour
                 imageTracker.ActivateDataSet(dataSet);
             }
         }
+		
+		foreach (Transform t in this.transform)
+		{
+			GlobalVariables.transformList.Add(t);
+		}
     }
 
     #endregion // UNITY_MONOBEHAVIOUR_METHODS

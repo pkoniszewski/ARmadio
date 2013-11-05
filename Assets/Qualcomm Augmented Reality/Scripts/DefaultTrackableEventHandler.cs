@@ -5,7 +5,8 @@ Confidential and Proprietary - QUALCOMM Austria Research Center GmbH.
 ==============================================================================*/
 
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 /// <summary>
 /// A custom handler that implements the ITrackableEventHandler interface.
 /// </summary>
@@ -65,6 +66,33 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
 
     private void OnTrackingFound()
     {
+		List<Transform> transormList = new List<Transform>();
+		foreach (Transform t in this.transform)
+		{
+			transormList.Add(t);
+		}
+		
+		foreach (Transform t in transormList)
+		{
+			
+			/*GameObject go = (GameObject)GameObject.Instantiate(t.gameObject);
+			go.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+            go.transform.localPosition = new Vector3(0, 0.0f, 0);
+            go.transform.localRotation = Quaternion.identity;
+			go.transform.parent = this.transform;
+			go.SetActive(true);
+			go.gameObject.SetActive(true);
+
+			
+			
+			Debug.Log("MYTEST 4 " + go.name);
+			Transform newT = (Transform)Instantiate(t);
+			Debug.Log("MYTEST " + newT.name);
+			newT.gameObject.SetActive(true);
+			newT.transform.gameObject.SetActive(true);
+			newT.transform.parent = this.transform;*/
+		}
+		
         Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
         Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
 
