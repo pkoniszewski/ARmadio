@@ -39,34 +39,34 @@ public class GuiBehaviour : MonoBehaviour {
 		//operacje sterujace dla gui_buttons:
 		if(Input.touchCount > 0) {
 			if(Input.touches[0].phase == TouchPhase.Began && gui_rotate.HitTest(Input.touches[0].position)) {
-				if(!TouchBehaviour.rotate) {
-					TouchBehaviour.rotate = true;
+				if(!GlobalVariables.rotate) {
+					GlobalVariables.rotate = true;
 					gui_rotate.texture = t_rotate_2;
-					TouchBehaviour.move = false;
+					GlobalVariables.move = false;
 					gui_move.texture = t_move_1;
-					TouchBehaviour.scale = false;
+					GlobalVariables.scale = false;
 					gui_scale.texture = t_scale_1;	
 				}
 				
 			}
 			else if(Input.touches[0].phase == TouchPhase.Began && gui_move.HitTest(Input.touches[0].position)) {
-				if(!TouchBehaviour.move) {
-					TouchBehaviour.rotate = false;
+				if(!GlobalVariables.move) {
+					GlobalVariables.rotate = false;
 					gui_rotate.texture = t_rotate_1;
-					TouchBehaviour.move = true;
+					GlobalVariables.move = true;
 					gui_move.texture = t_move_2;
-					TouchBehaviour.scale = false;
+					GlobalVariables.scale = false;
 					gui_scale.texture = t_scale_1;	
 				}
 				
 			}
 			else if(Input.touches[0].phase == TouchPhase.Began && gui_scale.HitTest(Input.touches[0].position)) {
-				if(!TouchBehaviour.scale) {
-					TouchBehaviour.rotate = false;
+				if(!GlobalVariables.scale) {
+					GlobalVariables.rotate = false;
 					gui_rotate.texture = t_rotate_1;
-					TouchBehaviour.move = false;
+					GlobalVariables.move = false;
 					gui_move.texture = t_move_1;
-					TouchBehaviour.scale = true;
+					GlobalVariables.scale = true;
 					gui_scale.texture = t_scale_2;	
 				}
 				

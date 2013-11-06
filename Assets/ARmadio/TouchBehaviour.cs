@@ -10,9 +10,9 @@ public class TouchBehaviour : MonoBehaviour
 	
 	
 	//zmienne odpowiedzialne za obracanie lub przesuwanie ekranu
-	public static bool rotate = true;
-	public static bool move = false;
-	public static bool scale = false;
+	//public static bool rotate = true;
+	//public static bool move = false;
+	//public static bool scale = false;
 	public static bool changeActive = false;
 	public static GameObject activeObj;
 	
@@ -83,7 +83,7 @@ public class TouchBehaviour : MonoBehaviour
                 Plane targetPlane = new Plane(transform.up, transform.position);
 
 					//operacje dla rotacji		
-					if(rotate) {
+					if(GlobalVariables.rotate) {
 
 						foreach (Touch touch in Input.touches)
                 		{							 
@@ -122,7 +122,7 @@ public class TouchBehaviour : MonoBehaviour
 						
 					}
 					
-					else if(move) {
+					else if(GlobalVariables.move) {
 						
 						
 						//foreach (Touch touch in Input.touches)
@@ -203,7 +203,7 @@ public class TouchBehaviour : MonoBehaviour
 						}
 					}
 					
-					else if(scale) {
+					else if(GlobalVariables.scale) {
 					/*
 					 * Wczytuje 2 dotkniecia, obliczam odleglosc miedzy nimi,
 					 * po przesunieciu obliczam odleglosc koncowych punktow i odlegosc miedzy nimi.
@@ -251,6 +251,10 @@ public class TouchBehaviour : MonoBehaviour
 							
 							}
 						}	
+					}
+					else if (GlobalVariables.light) {
+						
+				
 					}
             }
         }
