@@ -1,0 +1,110 @@
+fileFormatVersion: 2
+guid: 1ac4b1288ecdde14094bd703798423b6
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Box06
+    100004: Box07
+    100006: ChamferBox316
+    100008: ChamferBox317
+    100010: ChamferBox318
+    100012: ChamferBox319
+    100014: Rectangle46
+    100016: Rectangle47
+    100018: Rectangle48
+    100020: Rectangle49
+    400000: //RootNode
+    400002: Box06
+    400004: Box07
+    400006: ChamferBox316
+    400008: ChamferBox317
+    400010: ChamferBox318
+    400012: ChamferBox319
+    400014: Rectangle46
+    400016: Rectangle47
+    400018: Rectangle48
+    400020: Rectangle49
+    2300000: Box06
+    2300002: Box07
+    2300004: ChamferBox316
+    2300006: ChamferBox317
+    2300008: ChamferBox318
+    2300010: ChamferBox319
+    2300012: Rectangle46
+    2300014: Rectangle47
+    2300016: Rectangle48
+    2300018: Rectangle49
+    3300000: Box06
+    3300002: Box07
+    3300004: ChamferBox316
+    3300006: ChamferBox317
+    3300008: ChamferBox318
+    3300010: ChamferBox319
+    3300012: Rectangle46
+    3300014: Rectangle47
+    3300016: Rectangle48
+    3300018: Rectangle49
+    4300000: Rectangle46
+    4300002: ChamferBox316
+    4300004: ChamferBox317
+    4300006: Rectangle47
+    4300008: Box06
+    4300010: Box07
+    4300012: Rectangle48
+    4300014: ChamferBox318
+    4300016: ChamferBox319
+    4300018: Rectangle49
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
