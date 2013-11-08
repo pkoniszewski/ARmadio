@@ -75,16 +75,18 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
 		
 		foreach (Transform t in transormList)
 		{
+			/*
 			GameObject go = (GameObject)GameObject.Instantiate(t.gameObject);
 			go.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
             go.transform.localPosition = new Vector3(0, 0.0f, 0);
             go.transform.localRotation = Quaternion.identity;
 			go.transform.parent = this.transform;
+			*/
 		}
 		
 		foreach (Transform t in this.transform)
 		{
-			t.gameObject.SetActive(true);
+			//t.gameObject.SetActive(true);
 			
 		}
 		

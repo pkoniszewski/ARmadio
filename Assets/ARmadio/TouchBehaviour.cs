@@ -37,12 +37,41 @@ public class TouchBehaviour : MonoBehaviour
     {
         m_Instance = this;
     }
+	
+	void preInitialization() {
+		GameObject iT = GameObject.Find("ImageTarget");
+
+		foreach (Transform kidette in iT.transform) {
+			
+			GlobalVariables.goList.Add(GameObject.Find (kidette.name));
+			
+			
+		}
+		
+		foreach (GameObject kidette in GlobalVariables.goList) {
+			kidette.SetActive(false);
+				
+		}
+		GlobalVariables.goList[0].SetActive(true);
+		
+		
+		
+	}
 
     void Start()
     {
 		//szukanie i przypisanie
 		//tutaj bedzie pobranie z ref od GUI aktywnego obiektu
-		moveObj = GameObject.Find("Chair");
+		
+		
+		
+		//moveObj = GameObject.Find("Chair");
+		
+		preInitialization();
+		
+		moveObj = GlobalVariables.goList[0];
+		//changeActive = true;
+		
 		
     }
 	
@@ -68,17 +97,7 @@ public class TouchBehaviour : MonoBehaviour
                  * TODO 
                  * 
                  * */
-				if(changeActive) {
-					activeObj.SetActive(true);
-					
-					Instantiate(moveObj);
-					Destroy (moveObj);
-					changeActive = false;
-					
 				
-				
-				}
-			
 			
                 Plane targetPlane = new Plane(transform.up, transform.position);
 
@@ -252,10 +271,22 @@ public class TouchBehaviour : MonoBehaviour
 							}
 						}	
 					}
-					else if (GlobalVariables.light) {
-						
-				
-					}
+					else if (GlobalVariables.changeActive) {
+						//int touchCorrection = 1;
+				         if(Input.touchCount > 1) {
+						 RaycastHit hit = new RaycastHit();
+							if (Input.GetTouch(0).phase.Equals(TouchPhase.Began)) {
+								Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+					            if (Physics.Raycast(ray, out hit)) {
+					                hit.transform.gameObject.SendMessage("OnMouseDown");
+					            }
+							}
+						}
+
+				     }						
+					
+			
+			
             }
         }
     

@@ -185,7 +185,9 @@ public class GuiBehaviour2 : MonoBehaviour {
 							GlobalVariables.change = false;
 							GlobalVariables.light = true;
 							GlobalVariables.lightOnBar = true;
+							
 						}
+						//GlobalVariables.showInventory = true;
 					}
 					
 					
