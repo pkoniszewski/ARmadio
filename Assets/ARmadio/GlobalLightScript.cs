@@ -52,7 +52,7 @@ public class GlobalLightScript : MonoBehaviour {
 				float x = (float)imgPos.x + radius * Mathf.Cos(kat);
 				float z = (float)imgPos.z + radius * Mathf.Sin(kat);
 				
-				Debug.LogError("Light_ x:"+x.ToString()+" y:"+z.ToString());
+				//Debug.LogError("Light_ x:"+x.ToString()+" y:"+z.ToString());
 				
 				Vector3 tempPos = new Vector3(x,defLight.transform.position.y,z);
 				
@@ -64,11 +64,6 @@ public class GlobalLightScript : MonoBehaviour {
 		
 		defLight.light.range = vSliderValue;
 		
-		
-		
-		
-		
-		
 	}
 	
 	
@@ -77,7 +72,9 @@ public class GlobalLightScript : MonoBehaviour {
 			defLight = CreateLight("default");
 			
 			Vector3 temp = imgPos;
-			temp.y += 500;			
+			//temp.y += 500;	
+			temp.y = GlobalVariables.goMaxHeight + 100;
+			//Debug.Log("Light y: "+temp.y.ToString());
 			defLight.transform.position = temp;		
 	}
 	
@@ -89,7 +86,7 @@ public class GlobalLightScript : MonoBehaviour {
 		
 		//newLight.AddComponent(GameObject.CreatePrimitive(typeof(PrimitiveType.Cube));
 		newLight.light.type = LightType.Point;
-		newLight.light.range = 400.0F;
+		newLight.light.range = 300.0F;
 		newLight.light.intensity = 5.02F;
 
 		

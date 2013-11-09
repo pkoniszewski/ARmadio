@@ -40,19 +40,32 @@ public class TouchBehaviour : MonoBehaviour
 	
 	void preInitialization() {
 		GameObject iT = GameObject.Find("ImageTarget");
-
+		float temp = 0;
+		float suma = 0;
+		
 		foreach (Transform kidette in iT.transform) {
 			
 			GlobalVariables.goList.Add(GameObject.Find (kidette.name));
 			
+			suma = kidette.collider.bounds.size.y + kidette.position.y;
+			//Debug.Log("Kid Yc:" +kidette.collider.bounds.size.ToString()+" Kid Yp:"+kidette.position.y);
+			if ( suma > temp ) 
+			{
+				temp = suma;
+				
+			}
+			
 			
 		}
+		GlobalVariables.goMaxHeight = suma;
+		//Debug.Log("temp: "+temp.ToString());
 		
 		foreach (GameObject kidette in GlobalVariables.goList) {
 			kidette.SetActive(false);
 				
 		}
 		GlobalVariables.goList[0].SetActive(true);
+		GlobalVariables.activeObject = GlobalVariables.goList[0];
 		
 		
 		
@@ -62,14 +75,10 @@ public class TouchBehaviour : MonoBehaviour
     {
 		//szukanie i przypisanie
 		//tutaj bedzie pobranie z ref od GUI aktywnego obiektu
-		
-		
-		
-		//moveObj = GameObject.Find("Chair");
-		
+				
 		preInitialization();
 		
-		moveObj = GlobalVariables.goList[0];
+		moveObj = GlobalVariables.activeObject;
 		//changeActive = true;
 		
 		
@@ -79,6 +88,7 @@ public class TouchBehaviour : MonoBehaviour
 
     void Update()
     {
+		moveObj = GlobalVariables.activeObject;
         if (touchToMove)
 
         {
@@ -283,14 +293,28 @@ public class TouchBehaviour : MonoBehaviour
 							}
 						}
 
-				     }						
+				     }
+			/*
+					else if(GlobalVariables.showInventory) {
+						if(Input.touchCount > 1) {
+							Vector2 touch = Input.GetTouch(0).position;
+							foreach (Rect r in GlobalVariables.invRect) {
+								if( r.Contains(touch)) {
+									int pos = GlobalVariables.invRect.FindIndex(FindR);
+									Debug.LogError("rect touch: "+pos.ToString());
+								}
+							}					
+						}
+							
+					} */
 					
 			
 			
             }
         }
     
-
+	
+	
     private static TouchBehaviour m_Instance = null;
 
     private TouchBehaviour() { }

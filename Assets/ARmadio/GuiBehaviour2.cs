@@ -189,6 +189,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 						}
 						//GlobalVariables.showInventory = true;
 					}
+
 					
 					
 					
