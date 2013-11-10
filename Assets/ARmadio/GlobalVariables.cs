@@ -22,13 +22,17 @@ public class GlobalVariables
 	
 	//for light
 	public static bool light = false;	
-	public static bool lightOnBar = false;
 	public static float goMaxHeight;
+	public static GameObject Bulb = GameObject.Find("Bulb");
 	
-	public static bool showInventory = true;
+	//for inventory
+	public static bool showInventory = false;
 	public static List<Rect> invRect = new List<Rect>();
-	public static bool changeActive = true;
 	
+	//for active
+	//public static bool changeActive = false;
+	public static bool active = false;
+	public static GameObject Arrow = GameObject.Find("Arrow");
 	
 	
 	

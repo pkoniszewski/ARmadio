@@ -38,45 +38,14 @@ public class TouchBehaviour : MonoBehaviour
         m_Instance = this;
     }
 	
-	void preInitialization() {
-		GameObject iT = GameObject.Find("ImageTarget");
-		float temp = 0;
-		float suma = 0;
-		
-		foreach (Transform kidette in iT.transform) {
-			
-			GlobalVariables.goList.Add(GameObject.Find (kidette.name));
-			
-			suma = kidette.collider.bounds.size.y + kidette.position.y;
-			//Debug.Log("Kid Yc:" +kidette.collider.bounds.size.ToString()+" Kid Yp:"+kidette.position.y);
-			if ( suma > temp ) 
-			{
-				temp = suma;
-				
-			}
-			
-			
-		}
-		GlobalVariables.goMaxHeight = suma;
-		//Debug.Log("temp: "+temp.ToString());
-		
-		foreach (GameObject kidette in GlobalVariables.goList) {
-			kidette.SetActive(false);
-				
-		}
-		GlobalVariables.goList[0].SetActive(true);
-		GlobalVariables.activeObject = GlobalVariables.goList[0];
-		
-		
-		
-	}
+	
 
     void Start()
     {
 		//szukanie i przypisanie
 		//tutaj bedzie pobranie z ref od GUI aktywnego obiektu
 				
-		preInitialization();
+		//preInitialization();
 		
 		moveObj = GlobalVariables.activeObject;
 		//changeActive = true;
@@ -281,8 +250,8 @@ public class TouchBehaviour : MonoBehaviour
 							}
 						}	
 					}
-					else if (GlobalVariables.changeActive) {
-						//int touchCorrection = 1;
+					else if (GlobalVariables.active) {
+						 if (!GlobalVariables.Arrow.activeSelf) GlobalVariables.Arrow.SetActive(true);
 				         if(Input.touchCount > 1) {
 						 RaycastHit hit = new RaycastHit();
 							if (Input.GetTouch(0).phase.Equals(TouchPhase.Began)) {

@@ -3,9 +3,16 @@
   <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="C:\Users\Meq_\Documents\GitHub\ARmadio\Assets\ARmadio\TouchBehaviour.cs" line="279" />
-      <Breakpoint file="C:\Users\Meq_\Documents\GitHub\ARmadio\Assets\ARmadio\InventoryClass.cs" line="23" />
+      <Breakpoint file="C:\Users\Meq_\Documents\GitHub\ARmadio\Assets\ARmadio\GuiBehaviour2.cs" line="24" />
+      <Breakpoint file="C:\Users\Meq_\Documents\GitHub\ARmadio\Assets\ARmadio\GuiBehaviour2.cs" line="80" />
+      <Breakpoint file="C:\Users\Meq_\Documents\GitHub\ARmadio\Assets\ARmadio\GuiBehaviour2.cs" line="40" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Assets\ARmadio\InventoryClass.cs" line="18" offsetX="317" offsetY="272" expression="invRect" liveUpdate="False" />
+    <Watch file="Assets\ARmadio\InventoryClass.cs" line="58" offsetX="517" offsetY="994" expression="invRect._items" liveUpdate="False" />
+    <Watch file="Assets\ARmadio\InventoryClass.cs" line="59" offsetX="570" offsetY="929" expression="nowy" liveUpdate="True" />
+    <Watch file="Assets\ARmadio\InventoryClass.cs" line="58" offsetX="522" offsetY="963" expression="once" liveUpdate="False" />
+    <Watch file="Assets\ARmadio\InventoryClass.cs" line="58" offsetX="517" offsetY="810" expression="invRect" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>

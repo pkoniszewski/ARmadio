@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class GuiBehaviour2 : MonoBehaviour {
@@ -11,8 +12,52 @@ public class GuiBehaviour2 : MonoBehaviour {
 	private GameObject gui_add;
 	private GameObject gui_change;
 	private GameObject gui_light;
+	private GameObject gui_activ;
 	
-	
+	void preInitialization() {
+		GameObject iT = GameObject.Find("ImageTarget");
+		GlobalVariables.Bulb.SetActive(false);
+		
+		float temp = 0;
+		float suma = 0;
+		
+		foreach (Transform kidette in iT.transform) {
+			
+			
+			
+			GlobalVariables.goList.Add(GameObject.Find (kidette.name));
+			
+			
+			suma = kidette.renderer.bounds.size.y + kidette.position.y;
+			//suma = kidette.collider.bounds.size.y + kidette.position.y;
+			if ( suma > temp ) 
+			{
+				temp = suma;			
+			}
+			
+			
+		}
+		GlobalVariables.goMaxHeight = suma;
+		
+
+		
+		
+		
+		foreach (GameObject kidette in GlobalVariables.goList) {
+			//kidette.SetActive(false);
+				
+		}
+		GlobalVariables.goList[0].SetActive(true);
+		GlobalVariables.activeObject = GlobalVariables.goList[0];
+		
+		Vector3 arrowPos = GlobalVariables.activeObject.transform.position;
+		arrowPos.y = GlobalVariables.activeObject.collider.bounds.size.y + GlobalVariables.activeObject.transform.position.y + 100;
+		GlobalVariables.Arrow.transform.position = arrowPos;
+		GlobalVariables.Arrow.SetActive(false);
+		
+		
+		
+	}
 	
 	// Use this for initialization
 	void Start () {
@@ -26,9 +71,13 @@ public class GuiBehaviour2 : MonoBehaviour {
 		gui_change = GameObject.Find("Change");
 		gui_light = GameObject.Find("Light");
 		
+		gui_activ = GameObject.Find("Active");
+		
 		
 		gui_modes.SetActive(false);
 		(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt2") as Texture2D;
+		
+		preInitialization();
 	}
 	
 	// Update is called once per frame
@@ -58,6 +107,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 							(gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt") as Texture2D;
 							(gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt") as Texture2D;
 							(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt") as Texture2D;
+							(gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt") as Texture2D;
 														
 							GlobalVariables.move = true;
 							GlobalVariables.scale = false;
@@ -65,7 +115,10 @@ public class GuiBehaviour2 : MonoBehaviour {
 							GlobalVariables.add_ = false;
 							GlobalVariables.change = false;
 							GlobalVariables.light = false;
-							GlobalVariables.lightOnBar = false;
+							GlobalVariables.active = false;
+							
+							GlobalVariables.Bulb.SetActive(false);
+							GlobalVariables.Arrow.SetActive(false);
 							
 							
 							
@@ -84,6 +137,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 							(gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt") as Texture2D;
 							(gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt") as Texture2D;
 							(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt") as Texture2D;
+							(gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt") as Texture2D;
 							
 							GlobalVariables.move = false;
 							GlobalVariables.scale = true;
@@ -91,7 +145,11 @@ public class GuiBehaviour2 : MonoBehaviour {
 							GlobalVariables.add_ = false;
 							GlobalVariables.change = false;
 							GlobalVariables.light = false;
-							GlobalVariables.lightOnBar = false;
+							GlobalVariables.active = false;
+							
+							GlobalVariables.Bulb.SetActive(false);
+							GlobalVariables.Arrow.SetActive(false);
+
 						}
 					}
 					
@@ -107,6 +165,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 							(gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt") as Texture2D;
 							(gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt") as Texture2D;
 							(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt") as Texture2D;
+							(gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt") as Texture2D;
 							
 							GlobalVariables.move = false;
 							GlobalVariables.scale = false;
@@ -114,7 +173,11 @@ public class GuiBehaviour2 : MonoBehaviour {
 							GlobalVariables.add_ = false;
 							GlobalVariables.change = false;
 							GlobalVariables.light = false;
-							GlobalVariables.lightOnBar = false;
+							GlobalVariables.active = false;
+							
+							GlobalVariables.Bulb.SetActive(false);
+							GlobalVariables.Arrow.SetActive(false);
+							
 						}
 					}
 					
@@ -131,6 +194,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 							(gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt2") as Texture2D;
 							(gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt") as Texture2D;
 							(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt") as Texture2D;
+							(gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt") as Texture2D;
 							
 							GlobalVariables.move = false;
 							GlobalVariables.scale = false;
@@ -138,7 +202,11 @@ public class GuiBehaviour2 : MonoBehaviour {
 							GlobalVariables.add_ = true;
 							GlobalVariables.change = false;
 							GlobalVariables.light = false;
-							GlobalVariables.lightOnBar = false;
+							GlobalVariables.active = false;
+							
+							GlobalVariables.Bulb.SetActive(false);
+							GlobalVariables.Arrow.SetActive(false);
+
 						}
 					}
 					
@@ -154,6 +222,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 							(gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt") as Texture2D;
 							(gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt2") as Texture2D;
 							(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt") as Texture2D;
+							(gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt") as Texture2D;
 							
 							GlobalVariables.move = false;
 							GlobalVariables.scale = false;
@@ -161,7 +230,11 @@ public class GuiBehaviour2 : MonoBehaviour {
 							GlobalVariables.add_ = false;
 							GlobalVariables.change = true;
 							GlobalVariables.light = false;
-							GlobalVariables.lightOnBar = false;
+							GlobalVariables.active = false;
+							
+							GlobalVariables.Bulb.SetActive(false);
+							GlobalVariables.Arrow.SetActive(false);
+
 						}
 					}
 					
@@ -177,6 +250,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 							(gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt") as Texture2D;
 							(gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt") as Texture2D;
 							(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt2") as Texture2D;
+							(gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt") as Texture2D;
 							
 							GlobalVariables.move = false;
 							GlobalVariables.scale = false;
@@ -184,10 +258,38 @@ public class GuiBehaviour2 : MonoBehaviour {
 							GlobalVariables.add_ = false;
 							GlobalVariables.change = false;
 							GlobalVariables.light = true;
-							GlobalVariables.lightOnBar = true;
+							GlobalVariables.active = false;
+							GlobalVariables.Arrow.SetActive(false);
+							
 							
 						}
-						//GlobalVariables.showInventory = true;
+					}
+					
+					if((gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position)){
+						//gui_actions.SetActive(true);
+						//gui_modes.SetActive(false);
+						
+						if(GlobalVariables.active == false){
+							(gui_move.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("move_butt") as Texture2D;
+							(gui_scale.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("scale_butt") as Texture2D;
+							(gui_rotate.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("rotate_butt") as Texture2D;
+							
+							(gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt") as Texture2D;
+							(gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt") as Texture2D;
+							(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt") as Texture2D;
+							(gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt2") as Texture2D;
+							
+							GlobalVariables.move = false;
+							GlobalVariables.scale = false;
+							GlobalVariables.rotate = false;
+							GlobalVariables.add_ = false;
+							GlobalVariables.change = true;
+							GlobalVariables.light = false;
+							GlobalVariables.active = true;
+							GlobalVariables.Bulb.SetActive(false);
+							
+
+						}
 					}
 
 					
