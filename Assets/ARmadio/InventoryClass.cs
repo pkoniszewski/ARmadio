@@ -30,8 +30,6 @@ using System.Collections.Generic;
 			if(GlobalVariables.showInventory) {
 				temp = (Resources.Load("move_butt2")) as Texture2D;
 			
-					
-				
 					GUI.Window(INV_ID, new Rect(20,20,(float)(Screen.width* 0.5),(float)(Screen.height * 0.5)),populateInv,"Lista modeli");
 				
 			}

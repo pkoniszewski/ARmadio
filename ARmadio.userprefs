@@ -1,12 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ARmadio\GlobalLightScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ARmadio\GuiBehaviour2.cs">
     <Files>
-      <File FileName="Assets\ARmadio\GuiBehaviour2.cs" Line="40" Column="1" />
-      <File FileName="Assets\ARmadio\GlobalLightScript.cs" Line="77" Column="45" />
+      <File FileName="Assets\ARmadio\GuiBehaviour2.cs" Line="232" Column="7" />
+      <File FileName="Assets\ARmadio\GlobalLightScript.cs" Line="1" Column="1" />
       <File FileName="Assets\ARmadio\TouchBehaviour.cs" Line="1" Column="1" />
-      <File FileName="Assets\ARmadio\GlobalVariables.cs" Line="1" Column="1" />
+      <File FileName="Assets\ARmadio\GlobalVariables.cs" Line="8" Column="38" />
       <File FileName="Assets\ARmadio\OnMouse.cs" Line="1" Column="1" />
+      <File FileName="Assets\ARmadio\InventoryClass.cs" Line="1" Column="1" />
+      <File FileName="Assets\ARmadio\ButtonBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\ARmadio\GuiBehaviour.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

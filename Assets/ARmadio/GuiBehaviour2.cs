@@ -22,11 +22,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 		float suma = 0;
 		
 		foreach (Transform kidette in iT.transform) {
-			
-			
-			
 			GlobalVariables.goList.Add(GameObject.Find (kidette.name));
-			
 			
 			suma = kidette.renderer.bounds.size.y + kidette.position.y;
 			//suma = kidette.collider.bounds.size.y + kidette.position.y;
@@ -38,25 +34,25 @@ public class GuiBehaviour2 : MonoBehaviour {
 			
 		}
 		GlobalVariables.goMaxHeight = suma;
-		
 
-		
-		
-		
 		foreach (GameObject kidette in GlobalVariables.goList) {
-			//kidette.SetActive(false);
+			kidette.SetActive(false);
 				
 		}
-		GlobalVariables.goList[0].SetActive(true);
 		GlobalVariables.activeObject = GlobalVariables.goList[0];
+		GlobalVariables.activeObject.SetActive(true);
+		GlobalVariables.numberOfModels = 1;
 		
 		Vector3 arrowPos = GlobalVariables.activeObject.transform.position;
 		arrowPos.y = GlobalVariables.activeObject.collider.bounds.size.y + GlobalVariables.activeObject.transform.position.y + 100;
 		GlobalVariables.Arrow.transform.position = arrowPos;
-		GlobalVariables.Arrow.SetActive(false);
+		GlobalVariables.Arrow.SetActive(false);	
 		
-		
-		
+		GlobalVariables.woodMaterials.Add(Resources.Load("Models/Materials/drewno_dark", typeof(Material)) as Material);
+		GlobalVariables.woodMaterials.Add(Resources.Load("Models/Materials/drewno_Bambus", typeof(Material)) as Material);
+		GlobalVariables.woodMaterials.Add(Resources.Load("Models/Materials/drewno_light", typeof(Material)) as Material);
+		GlobalVariables.woodMaterials.Add(Resources.Load("Models/Materials/drewno_med", typeof(Material)) as Material);
+		GlobalVariables.woodMaterials.Add(Resources.Load("Models/Materials/drewno_walnut", typeof(Material)) as Material);
 	}
 	
 	// Use this for initialization
@@ -119,9 +115,6 @@ public class GuiBehaviour2 : MonoBehaviour {
 							
 							GlobalVariables.Bulb.SetActive(false);
 							GlobalVariables.Arrow.SetActive(false);
-							
-							
-							
 						}
 					}
 					
@@ -177,7 +170,6 @@ public class GuiBehaviour2 : MonoBehaviour {
 							
 							GlobalVariables.Bulb.SetActive(false);
 							GlobalVariables.Arrow.SetActive(false);
-							
 						}
 					}
 					
@@ -186,7 +178,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 						gui_actions.SetActive(true);
 						gui_modes.SetActive(false);
 						
-						if(GlobalVariables.add_ == false){
+						/*if(GlobalVariables.add_ == false){
 							(gui_move.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("move_butt") as Texture2D;
 							(gui_scale.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("scale_butt") as Texture2D;
 							(gui_rotate.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("rotate_butt") as Texture2D;
@@ -207,14 +199,20 @@ public class GuiBehaviour2 : MonoBehaviour {
 							GlobalVariables.Bulb.SetActive(false);
 							GlobalVariables.Arrow.SetActive(false);
 
-						}
+						}*/
+						/*GameObject chair = Instantiate(GlobalVariables.goList[1], Vector3.zero, Quaternion.identity) as GameObject;
+						GlobalVariables.goList.Add(chair);
+						GlobalVariables.activeObject = chair;*/
+						GlobalVariables.activeObject = GlobalVariables.goList[GlobalVariables.numberOfModels];
+						GlobalVariables.activeObject.SetActive(true);
+						GlobalVariables.numberOfModels++;
 					}
 					
 					if((gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position) && gui_modes.activeSelf){
-						gui_actions.SetActive(true);
-						gui_modes.SetActive(false);
+						//gui_actions.SetActive(true);
+						//gui_modes.SetActive(false);
 						
-						if(GlobalVariables.change == false){
+						/*if(GlobalVariables.change == false){
 							(gui_move.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("move_butt") as Texture2D;
 							(gui_scale.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("scale_butt") as Texture2D;
 							(gui_rotate.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("rotate_butt") as Texture2D;
@@ -235,7 +233,14 @@ public class GuiBehaviour2 : MonoBehaviour {
 							GlobalVariables.Bulb.SetActive(false);
 							GlobalVariables.Arrow.SetActive(false);
 
-						}
+						}*/
+						
+						GlobalVariables.woodMaterialIndex = (GlobalVariables.woodMaterialIndex +1)%GlobalVariables.maxWoodMaterials;
+						GlobalVariables.activeObject.renderer.material = GlobalVariables.woodMaterials[GlobalVariables.woodMaterialIndex];
+						
+						//nie wiem jak zmusić do działania
+						//Material newMat2 = Resources.Load("tex_3", typeof(Material)) as Material;
+						//GlobalVariables.activeObject.renderer.materials[1] = newMat2;
 					}
 					
 					if((gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position) && gui_modes.activeSelf){
@@ -260,8 +265,6 @@ public class GuiBehaviour2 : MonoBehaviour {
 							GlobalVariables.light = true;
 							GlobalVariables.active = false;
 							GlobalVariables.Arrow.SetActive(false);
-							
-							
 						}
 					}
 					
@@ -290,13 +293,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 							
 
 						}
-					}
-
-					
-					
-					
-					
-					
+					}					
 				}
 			}
 		}
