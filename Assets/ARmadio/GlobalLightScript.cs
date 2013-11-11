@@ -74,7 +74,7 @@ public class GlobalLightScript : MonoBehaviour {
 			Vector3 temp = imgPos;
 			//temp.y += 500;	
 			//System.Threading.Thread.Sleep(2000);	
-			temp.y = GlobalVariables.goMaxHeight + 220;
+			temp.y = GlobalVariables.goMaxHeight + 100;
 			//Debug.Log("Light y: "+temp.y.ToString());
 			defLight.transform.position = temp;		
 	}
