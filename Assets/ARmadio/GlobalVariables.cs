@@ -8,6 +8,9 @@ public class GlobalVariables
 	public static int numberOfModels = 0;
 	public static List<Transform> transformList = new List<Transform>();
 	
+	public static List<Material> woodMaterials = new List<Material>();
+	public static int woodMaterialIndex = 0;
+	public const int maxWoodMaterials = 5;
 	
 	//Globalna lista wszystkich dzieci ImageTarget(wszystkich naszych krzesel)
 	public static List<GameObject> goList = new List<GameObject>();

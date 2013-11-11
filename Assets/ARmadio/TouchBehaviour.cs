@@ -263,8 +263,8 @@ public class TouchBehaviour : MonoBehaviour
 						}
 
 				     }
-			/*
-					else if(GlobalVariables.showInventory) {
+			
+					/*else if(GlobalVariables.showInventory) {
 						if(Input.touchCount > 1) {
 							Vector2 touch = Input.GetTouch(0).position;
 							foreach (Rect r in GlobalVariables.invRect) {
@@ -275,14 +275,9 @@ public class TouchBehaviour : MonoBehaviour
 							}					
 						}
 							
-					} */
-					
-			
-			
+					}*/
             }
         }
-    
-	
 	
     private static TouchBehaviour m_Instance = null;
 
