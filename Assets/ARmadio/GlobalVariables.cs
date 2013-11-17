@@ -37,7 +37,9 @@ public class GlobalVariables
 	public static bool active = false;
 	public static GameObject Arrow = GameObject.Find("Arrow");
 	
-	
-	
+	public static float widthScale = 1;
+	public static float heightScale = 1;
+	public static float widthNormalized = 480;
+	public static float heightNormalized = 800;
 }
 
