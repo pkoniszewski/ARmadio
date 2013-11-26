@@ -24,11 +24,13 @@ public class GuiBehaviour2 : MonoBehaviour {
 		foreach (Transform kidette in iT.transform) {
 			GlobalVariables.goList.Add(GameObject.Find (kidette.name));
 			
-			suma = kidette.renderer.bounds.size.y + kidette.position.y;
-			//suma = kidette.collider.bounds.size.y + kidette.position.y;
-			if ( suma > temp ) 
-			{
-				temp = suma;			
+			if(kidette.renderer != null) {
+				suma = kidette.renderer.bounds.size.y + kidette.position.y;
+				//suma = kidette.collider.bounds.size.y + kidette.position.y;
+				if ( suma > temp ) 
+				{
+					temp = suma;			
+				}
 			}
 			
 			
