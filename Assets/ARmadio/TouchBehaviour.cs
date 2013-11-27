@@ -105,13 +105,16 @@ public class TouchBehaviour : MonoBehaviour
 								
 								float diff = startX - stopX;
 								
+								moveObj.transform.Rotate(Vector3.forward, diff/50);
+								GlobalVariables.rotation += diff/50;
 								//w zaleznosci od roznicy obrot w prawo albo lewo
-								if( diff > 0) {
-									moveObj.transform.Rotate(Vector3.forward, 60 * Time.deltaTime);
-								}
-								else {
-									moveObj.transform.Rotate(-Vector3.forward, 60 * Time.deltaTime);	
-								}
+								//if( diff > 0) {
+								//	moveObj.transform.Rotate(Vector3.forward, diff/1000);
+								//}
+								//else {
+								//	moveObj.transform.Rotate(-Vector3.forward, diff/1000/*60 * Time.deltaTime*/);	
+								//}
+						
 								//Debug.LogError("diff: "+diff.ToString()+"  STARTX:"+StartX.ToString()+"STOPX:"+StopX.ToString()+"__localscale:"+ChairObj.transform.localScale.ToString());
 							}
 							return;
