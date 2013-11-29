@@ -47,7 +47,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 		go.name = "0_0";
 		go.SetActive(true);
 		GlobalVariables.activeObject = go;
-		GlobalVariables.goList.Add(go.gameObject);
+		GlobalVariables.goList.Add(go);
 		GlobalVariables.numberOfModels = 1;
 		
 		Vector3 arrowPos = GlobalVariables.activeObject.transform.position;
@@ -211,7 +211,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 						go.SetActive(true);
 						DestroyImmediate(GlobalVariables.activeObject);
 						GlobalVariables.activeObject = go;
-						GlobalVariables.goList[index] = go;
+						GlobalVariables.goList[index] = go.gameObject;
 						
 						GlobalVariables.indexOfActualModel = (GlobalVariables.indexOfActualModel + 1)%GlobalVariables.maxNumberOfDifferentModels;
 						
