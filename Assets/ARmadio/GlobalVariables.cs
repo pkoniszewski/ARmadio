@@ -12,13 +12,13 @@ public class GlobalVariables
 	public static List<GameObject> myList = new List<GameObject>();
 	
 	public static int numberOfModels = 0;
-	public static int maxNumberOfDifferentModels = 30;
-	public static int indexOfActualModel = 15;
+	public static int maxNumberOfDifferentModels = 26;
+	public static int indexOfActualModel = 4;
 	
 	public static GameObject activeObject;
 	
 	public static float rotation = 0.0f;
-	public static float scalation = 0.0f;
+	public static float scalation = 1.0f;
 	
 	public static bool rotate = false;
 	public static bool move = false;

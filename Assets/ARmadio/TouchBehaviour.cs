@@ -105,7 +105,14 @@ public class TouchBehaviour : MonoBehaviour
 								
 								float diff = startX - stopX;
 								
-								moveObj.transform.Rotate(Vector3.forward, diff/50);
+								string[] strs = GlobalVariables.activeObject.name.Split('_');
+								string model = strs[strs.Length - 1];
+						
+								if((Convert.ToInt32(model) >6 && Convert.ToInt32(model) < 12) || (Convert.ToInt32(model) >21 && Convert.ToInt32(model) < 26))
+									moveObj.transform.Rotate(Vector3.up, diff/50);
+								else 
+									moveObj.transform.Rotate(Vector3.forward, diff/50);
+								
 								GlobalVariables.rotation += diff/50;
 								//w zaleznosci od roznicy obrot w prawo albo lewo
 								//if( diff > 0) {
@@ -234,17 +241,26 @@ public class TouchBehaviour : MonoBehaviour
 								Vector2 scaleEnd2 = touch2.position;
 								float scaleEndDiff = Vector2.Distance(scaleEnd1,scaleEnd2);
 								
-								if(scaleEndDiff > scaleStartDiff) {
-									moveObj.transform.localScale += new Vector3(0.0009F, 0.0009F, 0.0009F);
-								}
+								/*if(scaleEndDiff > scaleStartDiff)
+									GlobalVariables.scalation += 0.0009F;
 								else {
-									if(moveObj.transform.localScale.x < 0.1) 
-									{
-										moveObj.transform.localScale = new Vector3(0.1F,0.1F,0.1F);
-									}
-									moveObj.transform.localScale -= new Vector3(0.0009F, 0.0009F, 0.0009F);
+									if(GlobalVariables.scalation < 0.1F)
+										GlobalVariables.scalation = 0.1F;
+									else GlobalVariables.scalation -= 0.0009F;
+								}*/
+						
+								foreach(GameObject obj in GlobalVariables.goList){
+										if(scaleEndDiff > scaleStartDiff) {
+											obj.transform.localScale += new Vector3(0.0009F, 0.0009F, 0.0009F);
+										}
+										else {
+											/*if(obj.transform.localScale.x < 0.1) 
+											{
+												obj.transform.localScale = new Vector3(0.1F,0.1F,0.1F);
+											}*/
+											obj.transform.localScale -= new Vector3(0.0009F, 0.0009F, 0.0009F);
+										}
 								}
-
 								//przepisanie nowych wartosci na poprzednie, zachowuje plynnosc
 								scaleStart1 = touch1.position;
 								scaleStart2 = touch2.position;

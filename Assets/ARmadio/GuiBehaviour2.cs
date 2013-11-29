@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GuiBehaviour2 : MonoBehaviour {
 	
@@ -43,9 +44,10 @@ public class GuiBehaviour2 : MonoBehaviour {
         go.transform.localPosition = GlobalVariables.myList[0].transform.position;
         go.transform.localRotation = GlobalVariables.myList[0].transform.rotation;
 		go.transform.parent = GameObject.Find("ImageTarget").transform;
+		go.name = "0_0";
 		go.SetActive(true);
 		GlobalVariables.activeObject = go;
-		GlobalVariables.goList.Add(go);
+		GlobalVariables.goList.Add(go.gameObject);
 		GlobalVariables.numberOfModels = 1;
 		
 		Vector3 arrowPos = GlobalVariables.activeObject.transform.position;
@@ -177,36 +179,12 @@ public class GuiBehaviour2 : MonoBehaviour {
 						gui_actions.SetActive(true);
 						gui_modes.SetActive(false);
 						
-						/*if(GlobalVariables.add_ == false){
-							(gui_move.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("move_butt") as Texture2D;
-							(gui_scale.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("scale_butt") as Texture2D;
-							(gui_rotate.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("rotate_butt") as Texture2D;
-							
-							(gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt2") as Texture2D;
-							(gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt") as Texture2D;
-							(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt") as Texture2D;
-							(gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt") as Texture2D;
-							
-							GlobalVariables.move = false;
-							GlobalVariables.scale = false;
-							GlobalVariables.rotate = false;
-							GlobalVariables.add_ = true;
-							GlobalVariables.change = false;
-							GlobalVariables.light = false;
-							GlobalVariables.active = false;
-							
-							GlobalVariables.Bulb.SetActive(false);
-							GlobalVariables.Arrow.SetActive(false);
-
-						}*/
-						/*GameObject chair = Instantiate(GlobalVariables.goList[1], Vector3.zero, Quaternion.identity) as GameObject;
-						GlobalVariables.goList.Add(chair);
-						GlobalVariables.activeObject = chair;*/
-						GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.myList[GlobalVariables.numberOfModels]);
+						GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.myList[GlobalVariables.numberOfModels%GlobalVariables.maxNumberOfDifferentModels]);
 						go.transform.localScale = GlobalVariables.myList[GlobalVariables.numberOfModels].transform.lossyScale/4;
         				go.transform.localPosition = GlobalVariables.myList[GlobalVariables.numberOfModels].transform.position;
         				go.transform.localRotation = GlobalVariables.myList[GlobalVariables.numberOfModels].transform.rotation;
 						go.transform.parent = GameObject.Find("ImageTarget").transform;
+						go.name = GlobalVariables.numberOfModels.ToString() + "_" + (GlobalVariables.numberOfModels%GlobalVariables.maxNumberOfDifferentModels).ToString();
 						go.SetActive(true);
 						GlobalVariables.activeObject = go;
 						GlobalVariables.goList.Add(go);
@@ -222,17 +200,51 @@ public class GuiBehaviour2 : MonoBehaviour {
 						go.transform.localScale = GlobalVariables.myList[GlobalVariables.indexOfActualModel].transform.lossyScale/4;
         				go.transform.localPosition = GlobalVariables.activeObject.transform.position;
         				go.transform.localRotation = GlobalVariables.myList[GlobalVariables.indexOfActualModel].transform.rotation;
-						go.transform.Rotate(Vector3.forward, GlobalVariables.rotation);
+						
+						/*if((GlobalVariables.indexOfActualModel >6 && GlobalVariables.indexOfActualModel < 12) || (GlobalVariables.indexOfActualModel >21 && GlobalVariables.indexOfActualModel < 26))
+							go.transform.Rotate(Vector3.up, GlobalVariables.acti);
+						else
+							go.transform.Rotate(Vector3.forward, GlobalVariables.rotation);*/
+						
+						go.name = index.ToString() + "_" + GlobalVariables.indexOfActualModel;
 						go.transform.parent = GameObject.Find("ImageTarget").transform;
 						go.SetActive(true);
-						GlobalVariables.goList[index].SetActive(false);
-						GlobalVariables.goList[index] = go;
+						DestroyImmediate(GlobalVariables.activeObject);
 						GlobalVariables.activeObject = go;
-						GlobalVariables.indexOfActualModel = (GlobalVariables.indexOfActualModel +1)%GlobalVariables.maxNumberOfDifferentModels;
+						GlobalVariables.goList[index] = go;
+						
+						GlobalVariables.indexOfActualModel = (GlobalVariables.indexOfActualModel + 1)%GlobalVariables.maxNumberOfDifferentModels;
+						
+						
 					}
 					
 					if((gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position) && gui_modes.activeSelf){
 						gui_actions.SetActive(true);
+	                    gui_modes.SetActive(false);
+	                    
+	                    if(GlobalVariables.change == false){
+	                            (gui_move.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("move_butt") as Texture2D;
+	                            (gui_scale.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("scale_butt") as Texture2D;
+	                            (gui_rotate.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("rotate_butt") as Texture2D;
+	                            
+	                            (gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt") as Texture2D;
+	                            (gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt2") as Texture2D;
+	                            (gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt") as Texture2D;
+	                            (gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt") as Texture2D;
+	                            
+	                            GlobalVariables.move = false;
+	                            GlobalVariables.scale = false;
+	                            GlobalVariables.rotate = false;
+	                            GlobalVariables.add_ = false;
+	                            GlobalVariables.change = true;
+	                            GlobalVariables.light = false;
+	                            GlobalVariables.active = false;
+	                            
+	                            GlobalVariables.Bulb.SetActive(false);
+	                            GlobalVariables.Arrow.SetActive(false);
+	
+	                    }
+						/*gui_actions.SetActive(true);
 						gui_modes.SetActive(false);
 						
 						if(GlobalVariables.light == false){
@@ -253,7 +265,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 							GlobalVariables.light = true;
 							GlobalVariables.active = false;
 							GlobalVariables.Arrow.SetActive(false);
-						}
+						}*/
 					}
 					
 					if((gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position)){
