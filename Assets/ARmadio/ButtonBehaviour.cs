@@ -61,7 +61,7 @@ public class ButtonBehaviour : MonoBehaviour
 		}
 		else if (GUI.Button (new Rect(windowWidth/2 + 10, 20, windowWidth/2 - 20, windowHeight - 25), "Hard reset"))
 		{
-			
+			HardReset();
 		}
 	}
 	
