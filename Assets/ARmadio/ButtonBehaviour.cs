@@ -82,7 +82,7 @@ public class ButtonBehaviour : MonoBehaviour
 	
 	public void Reset()
 	{
-		foreach (var gameObject in GlobalVariables.goList)
+		foreach (var gameObject in GlobalVariables.myList)
 		{
 			// TODO: Zamienic na liste kopii, poki co uzywana jest glowna lista.
 			gameObject.transform.position = new Vector3(0f, 0f, 0f);
@@ -93,6 +93,12 @@ public class ButtonBehaviour : MonoBehaviour
 	public void HardReset()
 	{
 		//TODO: Wyczyscic liste kopii.
+		foreach (var go in GlobalVariables.myList)
+		{
+			go.SetActive(false);
+			DestroyImmediate(go);
+		}
+			
 		GlobalVariables.myList.Clear();
 		showContextMenu = false;
 	}

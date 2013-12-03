@@ -240,25 +240,13 @@ public class TouchBehaviour : MonoBehaviour
 								Vector2 scaleEnd1 = touch1.position;
 								Vector2 scaleEnd2 = touch2.position;
 								float scaleEndDiff = Vector2.Distance(scaleEnd1,scaleEnd2);
-								
-								/*if(scaleEndDiff > scaleStartDiff)
-									GlobalVariables.scalation += 0.0009F;
-								else {
-									if(GlobalVariables.scalation < 0.1F)
-										GlobalVariables.scalation = 0.1F;
-									else GlobalVariables.scalation -= 0.0009F;
-								}*/
 						
-								foreach(GameObject obj in GlobalVariables.goList){
+								foreach(GameObject obj in GlobalVariables.myList){
 										if(scaleEndDiff > scaleStartDiff) {
-											obj.transform.localScale += new Vector3(0.0009F, 0.0009F, 0.0009F);
+											obj.transform.localScale *= 1.01f;
 										}
 										else {
-											/*if(obj.transform.localScale.x < 0.1) 
-											{
-												obj.transform.localScale = new Vector3(0.1F,0.1F,0.1F);
-											}*/
-											obj.transform.localScale -= new Vector3(0.0009F, 0.0009F, 0.0009F);
+											obj.transform.localScale *= 0.99f;
 										}
 								}
 								//przepisanie nowych wartosci na poprzednie, zachowuje plynnosc

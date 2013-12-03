@@ -24,7 +24,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 		float suma = 0;
 		
 		foreach (Transform kidette in iT.transform) {
-			GlobalVariables.myList.Add(GameObject.Find (kidette.name));
+			GlobalVariables.goList.Add(GameObject.Find (kidette.name));
 			kidette.gameObject.SetActive(false);
 			
 			if(kidette.renderer != null) {
@@ -38,16 +38,16 @@ public class GuiBehaviour2 : MonoBehaviour {
 		}
 		GlobalVariables.goMaxHeight = suma;
 		
-		GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.myList[0]);
+		GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.goList[0]);
 		
-		go.transform.localScale = GlobalVariables.myList[0].transform.lossyScale/4;
-        go.transform.localPosition = GlobalVariables.myList[0].transform.position;
-        go.transform.localRotation = GlobalVariables.myList[0].transform.rotation;
+		go.transform.localScale = GlobalVariables.goList[0].transform.lossyScale/4;
+        go.transform.localPosition = GlobalVariables.goList[0].transform.position;
+        go.transform.localRotation = GlobalVariables.goList[0].transform.rotation;
 		go.transform.parent = GameObject.Find("ImageTarget").transform;
 		go.name = "0_0";
 		go.SetActive(true);
 		GlobalVariables.activeObject = go;
-		GlobalVariables.goList.Add(go);
+		GlobalVariables.myList.Add(go);
 		GlobalVariables.numberOfModels = 1;
 		
 		Vector3 arrowPos = GlobalVariables.activeObject.transform.position;
@@ -69,7 +69,6 @@ public class GuiBehaviour2 : MonoBehaviour {
 		gui_light = GameObject.Find("Light");
 		
 		gui_activ = GameObject.Find("Active");
-		
 		
 		gui_modes.SetActive(false);
 		(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt2") as Texture2D;
@@ -179,15 +178,15 @@ public class GuiBehaviour2 : MonoBehaviour {
 						gui_actions.SetActive(true);
 						gui_modes.SetActive(false);
 						
-						GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.myList[GlobalVariables.numberOfModels%GlobalVariables.maxNumberOfDifferentModels]);
-						go.transform.localScale = GlobalVariables.myList[GlobalVariables.numberOfModels].transform.lossyScale/4;
-        				go.transform.localPosition = GlobalVariables.myList[GlobalVariables.numberOfModels].transform.position;
-        				go.transform.localRotation = GlobalVariables.myList[GlobalVariables.numberOfModels].transform.rotation;
+						GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.goList[GlobalVariables.numberOfModels%GlobalVariables.maxNumberOfDifferentModels]);
+						go.transform.localScale = GlobalVariables.goList[GlobalVariables.numberOfModels].transform.lossyScale/4;
+        				go.transform.localPosition = GlobalVariables.goList[GlobalVariables.numberOfModels].transform.position;
+        				go.transform.localRotation = GlobalVariables.goList[GlobalVariables.numberOfModels].transform.rotation;
 						go.transform.parent = GameObject.Find("ImageTarget").transform;
 						go.name = GlobalVariables.numberOfModels.ToString() + "_" + (GlobalVariables.numberOfModels%GlobalVariables.maxNumberOfDifferentModels).ToString();
 						go.SetActive(true);
 						GlobalVariables.activeObject = go;
-						GlobalVariables.goList.Add(go);
+						GlobalVariables.myList.Add(go);
 						GlobalVariables.numberOfModels++;
 					}
 					
@@ -195,11 +194,11 @@ public class GuiBehaviour2 : MonoBehaviour {
 						gui_actions.SetActive(true);
 						gui_modes.SetActive(false);
 						
-						int index = GlobalVariables.goList.IndexOf(GlobalVariables.activeObject);
-						GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.myList[GlobalVariables.indexOfActualModel]);
-						go.transform.localScale = GlobalVariables.myList[GlobalVariables.indexOfActualModel].transform.lossyScale/4;
+						int index = GlobalVariables.myList.IndexOf(GlobalVariables.activeObject);
+						GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.goList[GlobalVariables.indexOfActualModel]);
+						go.transform.localScale = GlobalVariables.goList[GlobalVariables.indexOfActualModel].transform.lossyScale/4;
         				go.transform.localPosition = GlobalVariables.activeObject.transform.position;
-        				go.transform.localRotation = GlobalVariables.myList[GlobalVariables.indexOfActualModel].transform.rotation;
+        				go.transform.localRotation = GlobalVariables.goList[GlobalVariables.indexOfActualModel].transform.rotation;
 						
 						/*if((GlobalVariables.indexOfActualModel >6 && GlobalVariables.indexOfActualModel < 12) || (GlobalVariables.indexOfActualModel >21 && GlobalVariables.indexOfActualModel < 26))
 							go.transform.Rotate(Vector3.up, GlobalVariables.acti);
@@ -211,7 +210,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 						go.SetActive(true);
 						DestroyImmediate(GlobalVariables.activeObject);
 						GlobalVariables.activeObject = go;
-						GlobalVariables.goList[index] = go.gameObject;
+						GlobalVariables.myList[index] = go.gameObject;
 						
 						GlobalVariables.indexOfActualModel = (GlobalVariables.indexOfActualModel + 1)%GlobalVariables.maxNumberOfDifferentModels;
 						
@@ -228,44 +227,22 @@ public class GuiBehaviour2 : MonoBehaviour {
 	                            (gui_rotate.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("rotate_butt") as Texture2D;
 	                            
 	                            (gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt") as Texture2D;
-	                            (gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt2") as Texture2D;
-	                            (gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt") as Texture2D;
+	                            (gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt") as Texture2D;
+	                            (gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt2") as Texture2D;
 	                            (gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt") as Texture2D;
 	                            
 	                            GlobalVariables.move = false;
 	                            GlobalVariables.scale = false;
 	                            GlobalVariables.rotate = false;
 	                            GlobalVariables.add_ = false;
-	                            GlobalVariables.change = true;
-	                            GlobalVariables.light = false;
+	                            GlobalVariables.change = false;
+	                            GlobalVariables.light = true;
 	                            GlobalVariables.active = false;
 	                            
-	                            GlobalVariables.Bulb.SetActive(false);
+	                            //GlobalVariables.Bulb.SetActive(false);
 	                            GlobalVariables.Arrow.SetActive(false);
 	
 	                    }
-						/*gui_actions.SetActive(true);
-						gui_modes.SetActive(false);
-						
-						if(GlobalVariables.light == false){
-							(gui_move.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("move_butt") as Texture2D;
-							(gui_scale.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("scale_butt") as Texture2D;
-							(gui_rotate.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("rotate_butt") as Texture2D;
-							
-							(gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt") as Texture2D;
-							(gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt") as Texture2D;
-							(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt2") as Texture2D;
-							(gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt") as Texture2D;
-							
-							GlobalVariables.move = false;
-							GlobalVariables.scale = false;
-							GlobalVariables.rotate = false;
-							GlobalVariables.add_ = false;
-							GlobalVariables.change = false;
-							GlobalVariables.light = true;
-							GlobalVariables.active = false;
-							GlobalVariables.Arrow.SetActive(false);
-						}*/
 					}
 					
 					if((gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position)){
@@ -290,8 +267,6 @@ public class GuiBehaviour2 : MonoBehaviour {
 							GlobalVariables.light = false;
 							GlobalVariables.active = true;
 							GlobalVariables.Bulb.SetActive(false);
-							
-
 						}
 					}					
 				}

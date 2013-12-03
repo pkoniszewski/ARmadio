@@ -5,7 +5,7 @@ PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   AndroidProfiler: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 3
   targetDevice: 2
   targetGlesGraphics: 1
   targetResolution: 0
@@ -30,7 +30,7 @@ PlayerSettings:
   allowedAutorotateToLandscapeRight: 1
   allowedAutorotateToLandscapeLeft: 1
   useOSAutorotation: 1
-  use32BitDisplayBuffer: 1
+  use32BitDisplayBuffer: 0
   use24BitDepthBuffer: 0
   defaultIsFullScreen: 1
   defaultIsNativeResolution: 1
@@ -88,7 +88,7 @@ PlayerSettings:
   iPhoneTargetOSVersion: 10
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
-  uIStatusBarHidden: 1
+  uIStatusBarHidden: 0
   uIExitOnSuspend: 0
   uIStatusBarStyle: 0
   iPhoneSplashScreen: {fileID: 0}
