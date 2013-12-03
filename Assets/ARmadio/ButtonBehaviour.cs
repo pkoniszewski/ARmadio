@@ -17,9 +17,6 @@ public class ButtonBehaviour : MonoBehaviour
 		
 		windowWidth = windowWidth*GlobalVariables.widthScale;
 		windowHeight = windowHeight*GlobalVariables.heightScale;
-		
-		Debug.Log("MYTEST: WIDTH " + GlobalVariables.widthScale.ToString());
-		Debug.Log("MYTEST: HEIGHT " + GlobalVariables.heightScale.ToString());
 	}
 	
     void OnGUI() {
@@ -58,6 +55,14 @@ public class ButtonBehaviour : MonoBehaviour
 			(Screen.height-windowHeight)/2f,
 			windowWidth,
 			windowHeight);
+		if (GUI.Button(new Rect(10, 20, windowWidth/2 - 10, windowHeight - 25), "Reset"))
+		{
+			Reset();
+		}
+		else if (GUI.Button (new Rect(windowWidth/2 + 10, 20, windowWidth/2 - 20, windowHeight - 25), "Hard reset"))
+		{
+			HardReset();
+		}
 	}
 	
 	void Update()
@@ -73,5 +78,22 @@ public class ButtonBehaviour : MonoBehaviour
 			showQuitWindow = false;
 			showContextMenu = !showContextMenu;
 		}
+	}
+	
+	public void Reset()
+	{
+		foreach (var gameObject in GlobalVariables.goList)
+		{
+			// TODO: Zamienic na liste kopii, poki co uzywana jest glowna lista.
+			gameObject.transform.position = new Vector3(0f, 0f, 0f);
+		}
+		showContextMenu = false;
+	}
+	
+	public void HardReset()
+	{
+		//TODO: Wyczyscic liste kopii.
+		GlobalVariables.myList.Clear();
+		showContextMenu = false;
 	}
 }
