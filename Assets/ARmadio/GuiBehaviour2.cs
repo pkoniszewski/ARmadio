@@ -44,7 +44,6 @@ public class GuiBehaviour2 : MonoBehaviour {
         go.transform.localPosition = GlobalVariables.goList[0].transform.position;
         go.transform.localRotation = GlobalVariables.goList[0].transform.rotation;
 		go.transform.parent = GameObject.Find("ImageTarget").transform;
-		go.name = "0_0";
 		go.SetActive(true);
 		GlobalVariables.activeObject = go;
 		GlobalVariables.myList.Add(go);
@@ -178,16 +177,6 @@ public class GuiBehaviour2 : MonoBehaviour {
 						gui_modes.SetActive(false);
 						
 						GlobalVariables.add_ = true;
-						GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.goList[GlobalVariables.numberOfModels%GlobalVariables.maxNumberOfDifferentModels]);
-						go.transform.localScale = GlobalVariables.goList[GlobalVariables.numberOfModels].transform.lossyScale/4;
-        				go.transform.localPosition = GlobalVariables.goList[GlobalVariables.numberOfModels].transform.position;
-        				go.transform.localRotation = GlobalVariables.goList[GlobalVariables.numberOfModels].transform.rotation;
-						go.transform.parent = GameObject.Find("ImageTarget").transform;
-						go.name = GlobalVariables.numberOfModels.ToString() + "_" + (GlobalVariables.numberOfModels%GlobalVariables.maxNumberOfDifferentModels).ToString();
-						go.SetActive(true);
-						GlobalVariables.activeObject = go;
-						GlobalVariables.myList.Add(go);
-						GlobalVariables.numberOfModels++;
 						
 						GlobalVariables.showInventory = true;
 					}
@@ -196,16 +185,14 @@ public class GuiBehaviour2 : MonoBehaviour {
 						gui_actions.SetActive(true);
 						gui_modes.SetActive(false);
 						
-						int index = GlobalVariables.myList.IndexOf(GlobalVariables.activeObject);
+						GlobalVariables.change = true;
+						
+						GlobalVariables.showInventory = true;
+						/*int index = GlobalVariables.myList.IndexOf(GlobalVariables.activeObject);
 						GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.goList[GlobalVariables.indexOfActualModel]);
 						go.transform.localScale = GlobalVariables.goList[GlobalVariables.indexOfActualModel].transform.lossyScale/4;
         				go.transform.localPosition = GlobalVariables.activeObject.transform.position;
         				go.transform.localRotation = GlobalVariables.goList[GlobalVariables.indexOfActualModel].transform.rotation;
-						
-						/*if((GlobalVariables.indexOfActualModel >6 && GlobalVariables.indexOfActualModel < 12) || (GlobalVariables.indexOfActualModel >21 && GlobalVariables.indexOfActualModel < 26))
-							go.transform.Rotate(Vector3.up, GlobalVariables.acti);
-						else
-							go.transform.Rotate(Vector3.forward, GlobalVariables.rotation);*/
 						
 						go.name = index.ToString() + "_" + GlobalVariables.indexOfActualModel;
 						go.transform.parent = GameObject.Find("ImageTarget").transform;
@@ -216,7 +203,7 @@ public class GuiBehaviour2 : MonoBehaviour {
 						
 						GlobalVariables.indexOfActualModel = (GlobalVariables.indexOfActualModel + 1)%GlobalVariables.maxNumberOfDifferentModels;
 						
-						
+						*/
 					}
 					
 					if((gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position) && gui_modes.activeSelf){
