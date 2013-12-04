@@ -35,7 +35,42 @@ public class InventoryClass : MonoBehaviour
 			Rect nowy = new Rect((GlobalVariables.goList.IndexOf(go)*textureWidth)+1,18, textureWidth, textureHeight);
 			if( GUI.Button (nowy,temp,guiStyle))
 			{
-				GlobalVariables.showInventory = false;
+				if(GlobalVariables.add_)
+				{
+					GlobalVariables.showInventory = false;
+					GlobalVariables.add_ = false;
+					
+					GameObject go2 = (GameObject)GameObject.Instantiate(go);
+					go2.transform.localScale = go.transform.lossyScale/4;
+					go2.transform.localRotation = go.transform.rotation;
+					go2.transform.localPosition = go.transform.position;
+					go2.transform.parent = GameObject.Find("ImageTarget").transform;
+					
+					go2.SetActive(true);
+					
+					GlobalVariables.myList.Add(go2.gameObject);
+					GlobalVariables.numberOfModels++;
+					GlobalVariables.activeObject = go2.gameObject;
+				}
+				else if(GlobalVariables.change)
+				{
+					GlobalVariables.showInventory = false;
+					GlobalVariables.change = false;
+					
+					//int index = GlobalVariables.goList.IndexOf(GlobalVariables.activeObject);
+					GameObject go2 = (GameObject)GameObject.Instantiate(go);
+					go2.transform.localScale = go.transform.lossyScale/4;
+					go2.transform.localRotation = go.transform.rotation;
+					go2.transform.localPosition = GlobalVariables.activeObject.transform.position;
+					go2.transform.parent = GameObject.Find("ImageTarget").transform;
+					
+					go2.SetActive(true);
+					
+					GlobalVariables.myList.Remove(GlobalVariables.activeObject);
+					DestroyImmediate(GlobalVariables.activeObject);
+					GlobalVariables.myList.Add(go2.gameObject);
+					GlobalVariables.activeObject = go2.gameObject;
+				}
 			}
 		}
 	}	
