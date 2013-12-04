@@ -173,11 +173,11 @@ public class GuiBehaviour2 : MonoBehaviour {
 						}
 					}
 					
-					
 					if((gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position) && gui_modes.activeSelf){
 						gui_actions.SetActive(true);
 						gui_modes.SetActive(false);
 						
+						GlobalVariables.add_ = true;
 						GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.goList[GlobalVariables.numberOfModels%GlobalVariables.maxNumberOfDifferentModels]);
 						go.transform.localScale = GlobalVariables.goList[GlobalVariables.numberOfModels].transform.lossyScale/4;
         				go.transform.localPosition = GlobalVariables.goList[GlobalVariables.numberOfModels].transform.position;
@@ -188,6 +188,8 @@ public class GuiBehaviour2 : MonoBehaviour {
 						GlobalVariables.activeObject = go;
 						GlobalVariables.myList.Add(go);
 						GlobalVariables.numberOfModels++;
+						
+						GlobalVariables.showInventory = true;
 					}
 					
 					if((gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position) && gui_modes.activeSelf){
@@ -241,7 +243,6 @@ public class GuiBehaviour2 : MonoBehaviour {
 	                            
 	                            //GlobalVariables.Bulb.SetActive(false);
 	                            GlobalVariables.Arrow.SetActive(false);
-	
 	                    }
 					}
 					
