@@ -10,6 +10,8 @@ public class ButtonBehaviour : MonoBehaviour
 	private bool showQuitWindow = false;
 	private bool showContextMenu = false;
 	
+	public GUISkin ExitSkin;
+	
 	void Awake()
 	{
 		/*GlobalVariables.widthScale = Screen.width / GlobalVariables.widthNormalized;
@@ -20,6 +22,9 @@ public class ButtonBehaviour : MonoBehaviour
 	}
 	
     void OnGUI() {
+		//nadpisuje defaultowe wartosci dla window i butta;
+		GUI.skin = ExitSkin;
+		
 		if (showQuitWindow)
 		{
 			// Tworzy nowe okno uzywajac zmiennej exitWindow jako polozenie i rozmiary okna
@@ -43,7 +48,7 @@ public class ButtonBehaviour : MonoBehaviour
             Application.Quit();
 		}
 		// Przycisk 'No' ukrywa menu
-		else if (GUI.Button (new Rect(windowWidth/2 + 10, 20, windowWidth/2 - 20, windowHeight - 25), "No"))
+		else if (GUI.Button (new Rect(windowWidth/2 + 10,20, windowWidth/2 - 10, windowHeight - 25), "No"))
 		{
 			showQuitWindow = false;
 		}
