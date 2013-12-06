@@ -15,22 +15,22 @@ public class GlobalLightScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		LightOnFunc();
+		//LightOnFunc();
 		screenCenter = new Vector2(Screen.width/2,Screen.height/2);
 		imgPos = GameObject.Find("ImageTarget").transform.position;
 	}
 	
 	
     void OnGUI() {
-		if(GlobalVariables.light) {
+		if(GlobalVariables._light) {
 			vSliderValue = GUI.VerticalSlider(new Rect(Screen.width - 50,30, 100, 200), vSliderValue, 1000.0F, 0.0F);	
 		}
         
     }
 	
 	// Update is called once per frame
-	void Update () {
-		if(GlobalVariables.light) {
+	/*void Update () {
+		if(GlobalVariables._light) {
 			if (!GlobalVariables.Bulb.activeSelf) GlobalVariables.Bulb.SetActive(true);
 			if (Input.touchCount == 1) {
 				if(Input.touches[0].phase == TouchPhase.Moved) {
@@ -64,7 +64,7 @@ public class GlobalLightScript : MonoBehaviour {
 		defLight.light.range = vSliderValue;
 		}
 		
-	}
+	}*/
 	
 	
 	//stworzenie defaultowego i dodanie na scene nad IT;
@@ -74,7 +74,7 @@ public class GlobalLightScript : MonoBehaviour {
 			Vector3 temp = imgPos;
 			//temp.y += 500;	
 			//System.Threading.Thread.Sleep(2000);	
-			temp.y = GlobalVariables.goMaxHeight + 100;
+			//temp.y = GlobalVariables.goMaxHeight + 100;
 			//Debug.Log("Light y: "+temp.y.ToString());
 			defLight.transform.position = temp;		
 	}

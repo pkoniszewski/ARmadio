@@ -12,11 +12,11 @@ public class ButtonBehaviour : MonoBehaviour
 	
 	void Awake()
 	{
-		GlobalVariables.widthScale = Screen.width / GlobalVariables.widthNormalized;
+		/*GlobalVariables.widthScale = Screen.width / GlobalVariables.widthNormalized;
 		GlobalVariables.heightScale = Screen.height / GlobalVariables.heightNormalized;
 		
 		windowWidth = windowWidth*GlobalVariables.widthScale;
-		windowHeight = windowHeight*GlobalVariables.heightScale;
+		windowHeight = windowHeight*GlobalVariables.heightScale;*/
 	}
 	
     void OnGUI() {

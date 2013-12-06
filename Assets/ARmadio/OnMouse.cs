@@ -21,7 +21,7 @@ public class OnMouse : MonoBehaviour {
 		
 		Vector3 arrowPos = GlobalVariables.activeObject.transform.position;
 		arrowPos.y = GlobalVariables.activeObject.collider.bounds.size.y + GlobalVariables.activeObject.transform.position.y + 100;
-		GlobalVariables.Arrow.transform.position = arrowPos;	
+		//GlobalVariables.Arrow.transform.position = arrowPos;	
 	}
 	
 	private bool IterateList(string name) {

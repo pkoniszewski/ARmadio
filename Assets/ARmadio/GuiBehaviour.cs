@@ -5,40 +5,16 @@ using System.Collections.Generic;
 
 public class GuiBehaviour : MonoBehaviour {
 	
-	private GameObject gui_actions;
-	private GameObject gui_modes;
-	private GameObject gui_move;
-	private GameObject gui_rotate;
-	private GameObject gui_scale;
-	private GameObject gui_add;
-	private GameObject gui_change;
-	private GameObject gui_light;
-	private GameObject gui_activ;
-	private GameObject activeActive;
-	
 	Vector2 scrollPosition = new Vector2();
 	
-	void preInitialization() {
+	void Start () {
 		GameObject iT = GameObject.Find("ImageTarget");
-		GlobalVariables.Bulb.SetActive(false);
-		
-		float temp = 0;
-		float suma = 0;
 		
 		foreach (Transform kidette in iT.transform) {
 			GlobalVariables.goList.Add(GameObject.Find (kidette.name));
 			kidette.gameObject.SetActive(false);
-			
-			if(kidette.renderer != null) {
-				suma = kidette.renderer.bounds.size.y + kidette.position.y;
-				//suma = kidette.collider.bounds.size.y + kidette.position.y;
-				if ( suma > temp ) 
-				{
-					temp = suma;			
-				}
-			}
+			var tmp = Resources.Load("InventoryThumbs/"+kidette.name) as Texture2D;
 		}
-		GlobalVariables.goMaxHeight = suma;
 		
 		GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.goList[0]);
 		
@@ -49,39 +25,140 @@ public class GuiBehaviour : MonoBehaviour {
 		go.SetActive(true);
 		GlobalVariables.activeObject = go;
 		GlobalVariables.myList.Add(go);
-		GlobalVariables.numberOfModels = 1;
-		
-		Vector3 arrowPos = GlobalVariables.activeObject.transform.position;
-		arrowPos.y = GlobalVariables.activeObject.collider.bounds.size.y + GlobalVariables.activeObject.transform.position.y + 100;
-		GlobalVariables.Arrow.transform.position = arrowPos;
-		GlobalVariables.Arrow.SetActive(false);	
 	}
 	
-	// Use this for initialization
-	void Start () {
-		gui_actions = GameObject.Find("Actions");
-		gui_modes = GameObject.Find("modes");
-		gui_move = GameObject.Find("Move");
-		gui_rotate = GameObject.Find("Rotate");
-		gui_scale = GameObject.Find("Scale");
+	void OnGUI() 
+	{
+		float buttonSize = Screen.height * 0.15f;
 		
-		gui_add = GameObject.Find("Add");
-		gui_change = GameObject.Find("Change");
-		gui_light = GameObject.Find("Light");
+	//GUI GUI GUI
+		GUILayout.BeginArea(new Rect(0, Screen.height - buttonSize ,Screen.width, buttonSize));
+		GUILayout.BeginHorizontal();
 		
-		gui_activ = GameObject.Find("Active");
+		if(GlobalVariables._move)
+		{
+			if(GUILayout.Button((Resources.Load("controls_move") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
+			{
+				GlobalVariables._menuState = !GlobalVariables._menuState;
+			}
+		}
+		else if(GlobalVariables._rotate)
+		{
+			if(GUILayout.Button((Resources.Load("controls_rotate") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
+			{
+				GlobalVariables._menuState = !GlobalVariables._menuState;
+			}
+		}
+		else if(GlobalVariables._scale)
+		{
+			if(GUILayout.Button((Resources.Load("controls_scale") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
+			{
+				GlobalVariables._menuState = !GlobalVariables._menuState;
+			}
+		}
+		else
+		{
+			if(GUILayout.Button((Resources.Load("controls") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
+			{
+				GlobalVariables._menuState = !GlobalVariables._menuState;
+			}
+		}
 		
-		gui_modes.SetActive(false);
-		(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt2") as Texture2D;
+		if(GlobalVariables._menuState)
+		{
+			if(GlobalVariables._move?
+				GUILayout.Button((Resources.Load("move_butt2") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)):
+				GUILayout.Button((Resources.Load("move_butt") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
+			{
+				GlobalVariables._menuState = false;
+				
+				GlobalVariables._move = true;
+				GlobalVariables._rotate = false;
+				GlobalVariables._scale = false;
+			}
 		
-		preInitialization();
-	}
+			if(GlobalVariables._rotate?
+				GUILayout.Button((Resources.Load("rotate_butt2") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)):
+				GUILayout.Button((Resources.Load("rotate_butt") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
+			{
+				GlobalVariables._menuState = false;
+				
+				GlobalVariables._move = false;
+				GlobalVariables._rotate = true;
+				GlobalVariables._scale = false;
+			}
+		
+			if(GlobalVariables._scale?
+				GUILayout.Button((Resources.Load("scale_butt2") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)):
+				GUILayout.Button((Resources.Load("scale_butt") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
+			{
+				GlobalVariables._menuState = false;
+				
+				GlobalVariables._move = false;
+				GlobalVariables._rotate = false;
+				GlobalVariables._scale = true;
+			}
+		}
+		
+		if(GlobalVariables._add?
+				GUILayout.Button((Resources.Load("add_butt2") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)):
+				GUILayout.Button((Resources.Load("add_butt") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
+		{
+			GlobalVariables._menuState = false;
+			GlobalVariables._add = !GlobalVariables._add;
+			GlobalVariables._change = false;
+			if(GlobalVariables._add)
+				GlobalVariables._showInventory = true;
+			else GlobalVariables._showInventory = false;
+		}
 	
-	void OnGUI() {
-		if(GlobalVariables.showInventory)
+		if(GlobalVariables._change?
+				GUILayout.Button((Resources.Load("change_butt2") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)):
+				GUILayout.Button((Resources.Load("change_butt") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
+		{
+			GlobalVariables._menuState = false;
+			GlobalVariables._change = !GlobalVariables._change;
+			GlobalVariables._add = false;
+			if(GlobalVariables._change)
+				GlobalVariables._showInventory = true;
+			else GlobalVariables._showInventory = false;
+		}
+	
+		if(GUILayout.Button((Resources.Load("del_butt") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
+		{
+			GlobalVariables._menuState = false;
+			GlobalVariables._showInventory = false;
+			
+			GlobalVariables.myList.Remove(GlobalVariables.activeObject);
+			DestroyImmediate(GlobalVariables.activeObject);
+		}
+	
+		if(GlobalVariables._light?
+				GUILayout.Button((Resources.Load("light_butt2") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)):
+				GUILayout.Button((Resources.Load("light_butt") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
+		{
+			GlobalVariables._menuState = false;
+			GlobalVariables._light = !GlobalVariables._light;
+			GlobalVariables._showInventory = false;
+		}
+	
+		if(GlobalVariables._active?
+				GUILayout.Button((Resources.Load("active_butt2") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)):
+				GUILayout.Button((Resources.Load("active_butt") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
+		{
+			GlobalVariables._menuState = false;
+			GlobalVariables._active = !GlobalVariables._active;
+			GlobalVariables._showInventory = false;
+		}
+		
+		GUILayout.EndHorizontal();
+		GUILayout.EndArea();
+		
+	//INVENTORY LIST
+		if(GlobalVariables._showInventory)
 		{
 			scrollPosition = GUILayout.BeginScrollView (
-				scrollPosition, GUILayout.Width (Screen.width), GUILayout.Height ((Screen.height * 0.15f)+20.0f));
+				scrollPosition, GUILayout.Width (Screen.width), GUILayout.Height ((buttonSize)+20.0f));
 			GUILayout.BeginHorizontal();
 			
 			int i = 0;
@@ -89,12 +166,12 @@ public class GuiBehaviour : MonoBehaviour {
 			{
 				//TODO: sprawdzić, widocznie jakieś śmieci dodają się do goList
 				if(i<26){
-				if(GUILayout.Button((Resources.Load("InventoryThumbs/"+go.name) as Texture2D), GUILayout.Width (Screen.height * 0.15f), GUILayout.Height (Screen.height * 0.15f)))
+				if(GUILayout.Button((Resources.Load("InventoryThumbs/"+go.name) as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
 				{
-					if(GlobalVariables.add_)
+					if(GlobalVariables._add)
 					{
-						GlobalVariables.showInventory = false;
-						GlobalVariables.add_ = false;
+						GlobalVariables._showInventory = false;
+						GlobalVariables._add = false;
 						
 						GameObject go2 = (GameObject)GameObject.Instantiate(go);
 						go2.transform.localScale = go.transform.lossyScale/4;
@@ -105,13 +182,12 @@ public class GuiBehaviour : MonoBehaviour {
 						go2.SetActive(true);
 						
 						GlobalVariables.myList.Add(go2.gameObject);
-						GlobalVariables.numberOfModels++;
 						GlobalVariables.activeObject = go2.gameObject;
 					}
-					else if(GlobalVariables.change)
+					else if(GlobalVariables._change)
 					{
-						GlobalVariables.showInventory = false;
-						GlobalVariables.change = false;
+						GlobalVariables._showInventory = false;
+						GlobalVariables._change = false;
 						
 						GameObject go2 = (GameObject)GameObject.Instantiate(go);
 						go2.transform.localScale = go.transform.lossyScale/4;
@@ -127,199 +203,11 @@ public class GuiBehaviour : MonoBehaviour {
 						GlobalVariables.activeObject = go2.gameObject;
 					}
 				}
-					
 				}i++;
 			}
 			
 			GUILayout.EndHorizontal();
 			GUILayout.EndScrollView ();
-		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-		if(Input.touchCount > 0) {
-			for(var i = 0; i < Input.touchCount; i++){
- 
-				Touch touch = Input.GetTouch(i);
-				
-				if(touch.phase == TouchPhase.Began){
-					//wysunięcie menu
-					if((gui_actions.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position) && gui_actions.activeSelf){
-						gui_actions.SetActive(false);
-						gui_modes.SetActive(true);
-					}
-					
-					if((gui_move.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position) && gui_modes.activeSelf){
-						gui_actions.SetActive(true);
-						gui_modes.SetActive(false);
-						
-						if(GlobalVariables.move == false){
-							(gui_move.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("move_butt2") as Texture2D;
-							(gui_scale.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("scale_butt") as Texture2D;
-							(gui_rotate.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("rotate_butt") as Texture2D;
-							
-							(gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt") as Texture2D;
-							(gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt") as Texture2D;
-							(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt") as Texture2D;
-							(gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt") as Texture2D;
-														
-							GlobalVariables.move = true;
-							GlobalVariables.scale = false;
-							GlobalVariables.rotate = false;
-							GlobalVariables.add_ = false;
-							GlobalVariables.change = false;
-							GlobalVariables.light = false;
-							GlobalVariables.active = false;
-							
-							GlobalVariables.Bulb.SetActive(false);
-							GlobalVariables.Arrow.SetActive(false);
-						}
-					}
-					
-					if((gui_scale.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position) && gui_modes.activeSelf){
-						gui_actions.SetActive(true);
-						gui_modes.SetActive(false);
-						
-						if(GlobalVariables.scale == false){
-							(gui_move.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("move_butt") as Texture2D;
-							(gui_scale.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("scale_butt2") as Texture2D;
-							(gui_rotate.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("rotate_butt") as Texture2D;
-							
-							(gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt") as Texture2D;
-							(gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt") as Texture2D;
-							(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt") as Texture2D;
-							(gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt") as Texture2D;
-							
-							GlobalVariables.move = false;
-							GlobalVariables.scale = true;
-							GlobalVariables.rotate = false;
-							GlobalVariables.add_ = false;
-							GlobalVariables.change = false;
-							GlobalVariables.light = false;
-							GlobalVariables.active = false;
-							
-							GlobalVariables.Bulb.SetActive(false);
-							GlobalVariables.Arrow.SetActive(false);
-
-						}
-					}
-					
-					if((gui_rotate.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position) && gui_modes.activeSelf){
-						gui_actions.SetActive(true);
-						gui_modes.SetActive(false);
-						
-						if(GlobalVariables.rotate == false){
-							(gui_move.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("move_butt") as Texture2D;
-							(gui_scale.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("scale_butt") as Texture2D;
-							(gui_rotate.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("rotate_butt2") as Texture2D;
-							
-							(gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt") as Texture2D;
-							(gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt") as Texture2D;
-							(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt") as Texture2D;
-							(gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt") as Texture2D;
-							
-							GlobalVariables.move = false;
-							GlobalVariables.scale = false;
-							GlobalVariables.rotate = true;
-							GlobalVariables.add_ = false;
-							GlobalVariables.change = false;
-							GlobalVariables.light = false;
-							GlobalVariables.active = false;
-							
-							GlobalVariables.Bulb.SetActive(false);
-							GlobalVariables.Arrow.SetActive(false);
-						}
-					}
-					
-					if((gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position) && gui_modes.activeSelf){
-						gui_actions.SetActive(true);
-						gui_modes.SetActive(false);
-						
-						GlobalVariables.add_ = true;
-						
-						GlobalVariables.showInventory = true;
-					}
-					
-					if((gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position) && gui_modes.activeSelf){
-						gui_actions.SetActive(true);
-						gui_modes.SetActive(false);
-						
-						GlobalVariables.change = true;
-						
-						GlobalVariables.showInventory = true;
-						/*int index = GlobalVariables.myList.IndexOf(GlobalVariables.activeObject);
-						GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.goList[GlobalVariables.indexOfActualModel]);
-						go.transform.localScale = GlobalVariables.goList[GlobalVariables.indexOfActualModel].transform.lossyScale/4;
-        				go.transform.localPosition = GlobalVariables.activeObject.transform.position;
-        				go.transform.localRotation = GlobalVariables.goList[GlobalVariables.indexOfActualModel].transform.rotation;
-						
-						go.name = index.ToString() + "_" + GlobalVariables.indexOfActualModel;
-						go.transform.parent = GameObject.Find("ImageTarget").transform;
-						go.SetActive(true);
-						DestroyImmediate(GlobalVariables.activeObject);
-						GlobalVariables.activeObject = go;
-						GlobalVariables.myList[index] = go.gameObject;
-						
-						GlobalVariables.indexOfActualModel = (GlobalVariables.indexOfActualModel + 1)%GlobalVariables.maxNumberOfDifferentModels;
-						
-						*/
-					}
-					
-					if((gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position) && gui_modes.activeSelf){
-						gui_actions.SetActive(true);
-	                    gui_modes.SetActive(false);
-	                    
-	                    if(GlobalVariables.change == false){
-	                            (gui_move.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("move_butt") as Texture2D;
-	                            (gui_scale.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("scale_butt") as Texture2D;
-	                            (gui_rotate.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("rotate_butt") as Texture2D;
-	                            
-	                            (gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt") as Texture2D;
-	                            (gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt") as Texture2D;
-	                            (gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt2") as Texture2D;
-	                            (gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt") as Texture2D;
-	                            
-	                            GlobalVariables.move = false;
-	                            GlobalVariables.scale = false;
-	                            GlobalVariables.rotate = false;
-	                            GlobalVariables.add_ = false;
-	                            GlobalVariables.change = false;
-	                            GlobalVariables.light = true;
-	                            GlobalVariables.active = false;
-	                            
-	                            //GlobalVariables.Bulb.SetActive(false);
-	                            GlobalVariables.Arrow.SetActive(false);
-	                    }
-					}
-					
-					if((gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).HitTest(touch.position)){
-						//gui_actions.SetActive(true);
-						//gui_modes.SetActive(false);
-						
-						if(GlobalVariables.active == false){
-							(gui_move.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("move_butt") as Texture2D;
-							(gui_scale.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("scale_butt") as Texture2D;
-							(gui_rotate.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("rotate_butt") as Texture2D;
-							
-							(gui_add.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("add_butt") as Texture2D;
-							(gui_change.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("change_butt") as Texture2D;
-							(gui_light.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("light_butt") as Texture2D;
-							(gui_activ.GetComponent(typeof(GUITexture)) as  GUITexture).texture = Resources.Load ("active_butt2") as Texture2D;
-							
-							GlobalVariables.move = false;
-							GlobalVariables.scale = false;
-							GlobalVariables.rotate = false;
-							GlobalVariables.add_ = false;
-							GlobalVariables.change = true;
-							GlobalVariables.light = false;
-							GlobalVariables.active = true;
-							GlobalVariables.Bulb.SetActive(false);
-						}
-					}					
-				}
-			}
 		}
 	}
 }
