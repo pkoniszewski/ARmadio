@@ -6,6 +6,7 @@ public class GlobalLightScript : MonoBehaviour {
 	
 	private GameObject defLight;
 	private float radius = 150;
+	public GUISkin ARmadioSkin;
 	
 	private Vector2 screenCenter;
 	private Vector3 imgPos;
@@ -22,6 +23,8 @@ public class GlobalLightScript : MonoBehaviour {
 	
 	
     void OnGUI() {
+		GUI.skin = ARmadioSkin;
+		
 		if(GlobalVariables._light) {
 			vSliderValue = GUI.VerticalSlider(new Rect(Screen.width - 50,30, 100, 200), vSliderValue, 1000.0F, 0.0F);	
 		}

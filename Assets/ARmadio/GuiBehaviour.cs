@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class GuiBehaviour : MonoBehaviour {
 	
+	public GUISkin ARmadioSkin;
+	
 	Vector2 scrollPosition = new Vector2();
 	
 	void Start () {
@@ -29,10 +31,11 @@ public class GuiBehaviour : MonoBehaviour {
 	
 	void OnGUI() 
 	{
+		GUI.skin = ARmadioSkin;
 		float buttonSize = Screen.height * 0.15f;
 		
 	//GUI GUI GUI
-		GUILayout.BeginArea(new Rect(0, Screen.height - buttonSize ,Screen.width, buttonSize));
+		GUILayout.BeginArea(new Rect(0, Screen.height - (buttonSize) ,Screen.width, (buttonSize)));
 		GUILayout.BeginHorizontal();
 		
 		if(GlobalVariables._move)
