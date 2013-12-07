@@ -199,7 +199,7 @@ public class TouchBehaviour : MonoBehaviour
 			
 			if(!GlobalVariables._active)
 			{
-				GameObject.Find("Arrow").SetActive(false);
+//				GameObject.Find("Arrow").SetActive(false);
 			}
 		}
 	}

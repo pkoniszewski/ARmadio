@@ -21,7 +21,7 @@ public class GuiBehaviour : MonoBehaviour {
 		GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.goList[0]);
 		
 		go.transform.localScale = GlobalVariables.goList[0].transform.lossyScale/4;
-        go.transform.localPosition = GlobalVariables.goList[0].transform.position;
+        go.transform.localPosition = new Vector3(0,0,0);
         go.transform.localRotation = GlobalVariables.goList[0].transform.rotation;
 		go.transform.parent = GameObject.Find("ImageTarget").transform;
 		go.SetActive(true);
@@ -168,7 +168,7 @@ public class GuiBehaviour : MonoBehaviour {
 			foreach (var go in GlobalVariables.goList)
 			{
 				//TODO: sprawdzić, widocznie jakieś śmieci dodają się do goList
-				if(i<26){
+				if(i<34){
 				if(GUILayout.Button((Resources.Load("InventoryThumbs/"+go.name) as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
 				{
 					if(GlobalVariables._add)
@@ -179,7 +179,7 @@ public class GuiBehaviour : MonoBehaviour {
 						GameObject go2 = (GameObject)GameObject.Instantiate(go);
 						go2.transform.localScale = go.transform.lossyScale/4;
 						go2.transform.localRotation = go.transform.rotation;
-						go2.transform.localPosition = go.transform.position;
+						go2.transform.localPosition = new Vector3(0,0,0);
 						go2.transform.parent = GameObject.Find("ImageTarget").transform;
 						
 						go2.SetActive(true);
