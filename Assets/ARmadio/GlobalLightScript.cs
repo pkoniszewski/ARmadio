@@ -15,8 +15,9 @@ public class GlobalLightScript : MonoBehaviour {
 	//public GUIStyle sliderStyle;
 	
 	// Use this for initialization
-	void Start () {
-		//LightOnFunc();
+	void Start () 
+	{
+		LightOnFunc();
 		screenCenter = new Vector2(Screen.width/2,Screen.height/2);
 		imgPos = GameObject.Find("ImageTarget").transform.position;
 	}

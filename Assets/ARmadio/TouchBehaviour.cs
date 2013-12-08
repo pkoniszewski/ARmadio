@@ -2,7 +2,6 @@
 using UnityEngine;
 using System.Collections;
 
-
 public class TouchBehaviour : MonoBehaviour
 {
     private Vector3 lastPlanePoint;
@@ -21,7 +20,6 @@ public class TouchBehaviour : MonoBehaviour
 	private Vector2 scaleStart2;
 	private float scaleStartDiff;
 	
-	
 	//obiekty kontrolujace i kontrolowane
 	private GameObject moveObj;
 
@@ -31,8 +29,26 @@ public class TouchBehaviour : MonoBehaviour
     }
 	
     void Update()
-    {
+    {	
 		moveObj = GlobalVariables.activeObject;
+		
+		if(GlobalVariables._active)
+		{
+			GlobalVariables.arrow.transform.position = new Vector3(moveObj.transform.position.x, moveObj.collider.bounds.extents.y + 500, moveObj.transform.position.z);
+			GlobalVariables.arrow.SetActive(true);
+		}
+		else
+		{
+			GlobalVariables.arrow.SetActive(false);
+		}
+		
+		/*if(GlobalVariables._light)
+		{
+		}
+		else
+		{
+			GlobalVariables.bulb.SetActive(false);
+		}*/
 		
 		if(!GlobalVariables._showInventory)
 		{
@@ -174,32 +190,6 @@ public class TouchBehaviour : MonoBehaviour
 						scaleStartDiff = Vector2.Distance(touch1.position,touch2.position);
 					}
 				}	
-			}
-			else if (GlobalVariables._active)
-			{
-				var arrow = GameObject.Find("Arrow") as GameObject;
-				
-				arrow.SetActive(true);
-				arrow.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
-				/*var position = GlobalVariables.activeObject.transform.position;
-				arrow.transform.localPosition = position;
-				
-				if(Input.touchCount > 1) 
-				{
-					RaycastHit hit = new RaycastHit();
-					if (Input.GetTouch(0).phase.Equals(TouchPhase.Began)) {
-						Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-						if (Physics.Raycast(ray, out hit)) 
-						{
-							hit.transform.gameObject.SendMessage("OnMouseDown");
-			            }
-					}
-				}*/
-			}
-			
-			if(!GlobalVariables._active)
-			{
-//				GameObject.Find("Arrow").SetActive(false);
 			}
 		}
 	}

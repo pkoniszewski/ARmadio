@@ -9,6 +9,9 @@ public class GuiBehaviour : MonoBehaviour {
 	
 	Vector2 scrollPosition = new Vector2();
 	
+	//potrzebne do unikalnych nazw, żeby działał skrypt onMouse
+	private int index = 0;
+	
 	void Start () {
 		GameObject iT = GameObject.Find("ImageTarget");
 		
@@ -20,10 +23,12 @@ public class GuiBehaviour : MonoBehaviour {
 		
 		GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.goList[0]);
 		
-		go.transform.localScale = GlobalVariables.goList[0].transform.lossyScale/4;
-        go.transform.localPosition = new Vector3(0,0,0);
+		go.transform.localScale = GlobalVariables.goList[0].transform.lossyScale;
+        go.transform.localPosition = GlobalVariables.goList[0].transform.position;
         go.transform.localRotation = GlobalVariables.goList[0].transform.rotation;
 		go.transform.parent = GameObject.Find("ImageTarget").transform;
+		go.name = index.ToString();
+		index++;
 		go.SetActive(true);
 		GlobalVariables.activeObject = go;
 		GlobalVariables.myList.Add(go);
@@ -177,10 +182,12 @@ public class GuiBehaviour : MonoBehaviour {
 						GlobalVariables._add = false;
 						
 						GameObject go2 = (GameObject)GameObject.Instantiate(go);
-						go2.transform.localScale = go.transform.lossyScale/4;
+						go2.transform.localScale = go.transform.lossyScale;
 						go2.transform.localRotation = go.transform.rotation;
-						go2.transform.localPosition = new Vector3(0,0,0);
+						go2.transform.localPosition = go.transform.position;
 						go2.transform.parent = GameObject.Find("ImageTarget").transform;
+						go2.name = index.ToString();
+						index++;
 						
 						go2.SetActive(true);
 						
@@ -193,11 +200,13 @@ public class GuiBehaviour : MonoBehaviour {
 						GlobalVariables._change = false;
 						
 						GameObject go2 = (GameObject)GameObject.Instantiate(go);
-						go2.transform.localScale = go.transform.lossyScale/4;
-						go2.transform.localRotation = go.transform.rotation;
+						go2.transform.localScale = go.transform.lossyScale;
+						go2.transform.localRotation = GlobalVariables.activeObject.transform.rotation;
 						go2.transform.localPosition = GlobalVariables.activeObject.transform.position;
 						go2.transform.parent = GameObject.Find("ImageTarget").transform;
-						
+						go2.name = index.ToString();
+						index++;
+							
 						go2.SetActive(true);
 						
 						GlobalVariables.myList.Remove(GlobalVariables.activeObject);

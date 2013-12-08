@@ -73,23 +73,6 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
 			transormList.Add(t);
 		}
 		
-		foreach (Transform t in transormList)
-		{
-			/*
-			GameObject go = (GameObject)GameObject.Instantiate(t.gameObject);
-			go.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
-            go.transform.localPosition = new Vector3(0, 0.0f, 0);
-            go.transform.localRotation = Quaternion.identity;
-			go.transform.parent = this.transform;
-			*/
-		}
-		
-		foreach (Transform t in this.transform)
-		{
-			//t.gameObject.SetActive(true);
-			
-		}
-		
 		this.gameObject.SetActive(true);
         Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
         Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
@@ -114,7 +97,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
     {
         Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
         Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
-
+		
         // Disable rendering:
         foreach (Renderer component in rendererComponents)
         {
@@ -126,7 +109,8 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
         {
             component.enabled = false;
         }
-
+		
+		GlobalVariables.arrow.SetActive(false);
         Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
     }
 
