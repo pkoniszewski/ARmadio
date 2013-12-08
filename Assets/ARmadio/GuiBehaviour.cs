@@ -202,7 +202,7 @@ public class GuiBehaviour : MonoBehaviour {
 						GameObject go2 = (GameObject)GameObject.Instantiate(go);
 						go2.transform.localScale = go.transform.lossyScale * GlobalVariables.globalScale;
 						go2.transform.localRotation = GlobalVariables.activeObject.transform.rotation;
-						go2.transform.localPosition = GlobalVariables.activeObject.transform.position;
+						go2.transform.localPosition = GlobalVariables.activeObject.transform.position + go.transform.position;
 						go2.transform.parent = GameObject.Find("ImageTarget").transform;
 						go2.name = index.ToString();
 						index++;
