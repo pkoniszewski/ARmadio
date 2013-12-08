@@ -20,10 +20,13 @@ public class GlobalLightScript : MonoBehaviour {
 		LightOnFunc();
 		screenCenter = new Vector2(Screen.width/2,Screen.height/2);
 		imgPos = GameObject.Find("ImageTarget").transform.position;
+		GlobalVariables.bulb.SetActive(false);
+		
 	}
 	
 	
-    void OnGUI() {
+    void OnGUI()
+	{
 		GUI.skin = ARmadioSkin;
 		
 		if(GlobalVariables._light) {
@@ -33,9 +36,11 @@ public class GlobalLightScript : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	/*void Update () {
-		if(GlobalVariables._light) {
-			if (!GlobalVariables.Bulb.activeSelf) GlobalVariables.Bulb.SetActive(true);
+	void Update () {
+		if(GlobalVariables._light)
+		{
+			imgPos = new Vector3(imgPos.x, imgPos.y + 500, imgPos.z);
+			if (!GlobalVariables.bulb.activeSelf) GlobalVariables.bulb.SetActive(true);
 			if (Input.touchCount == 1) {
 				if(Input.touches[0].phase == TouchPhase.Moved) {
 					
@@ -59,7 +64,7 @@ public class GlobalLightScript : MonoBehaviour {
 					Vector3 tempPos = new Vector3(x,defLight.transform.position.y,z);
 					
 					defLight.transform.position = tempPos;
-					GlobalVariables.Bulb.transform.position = tempPos;
+					GlobalVariables.bulb.transform.position = tempPos;
 					
 				}			
 			}
@@ -68,7 +73,7 @@ public class GlobalLightScript : MonoBehaviour {
 		defLight.light.range = vSliderValue;
 		}
 		
-	}*/
+	}
 	
 	
 	//stworzenie defaultowego i dodanie na scene nad IT;

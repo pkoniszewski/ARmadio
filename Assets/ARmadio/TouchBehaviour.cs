@@ -16,8 +16,6 @@ public class TouchBehaviour : MonoBehaviour
 	private Vector2 startPos2 = new Vector2(0,Screen.height/2);
 	
 	//zmienne do skalowania
-	private Vector2 scaleStart1;
-	private Vector2 scaleStart2;
 	private float scaleStartDiff;
 	
 	//obiekty kontrolujace i kontrolowane
@@ -42,15 +40,7 @@ public class TouchBehaviour : MonoBehaviour
 			GlobalVariables.arrow.SetActive(false);
 		}
 		
-		/*if(GlobalVariables._light)
-		{
-		}
-		else
-		{
-			GlobalVariables.bulb.SetActive(false);
-		}*/
-		
-		if(!GlobalVariables._showInventory)
+		if(!GlobalVariables._showInventory && !GlobalVariables._light)
 		{
 			Plane targetPlane = new Plane(transform.up, transform.position);
 			
@@ -163,8 +153,6 @@ public class TouchBehaviour : MonoBehaviour
 						
 					if (touch1.phase == TouchPhase.Began && touch1.phase == TouchPhase.Began) 
 					{
-						scaleStart1 = touch1.position;
-						scaleStart2 = touch2.position;
 						scaleStartDiff = Vector2.Distance(touch1.position,touch2.position);
 					}
 					else if (touch1.phase == TouchPhase.Moved && touch2.phase == TouchPhase.Moved) 
@@ -185,8 +173,6 @@ public class TouchBehaviour : MonoBehaviour
 							}
 						}
 						//przepisanie nowych wartosci na poprzednie, zachowuje plynnosc
-						scaleStart1 = touch1.position;
-						scaleStart2 = touch2.position;
 						scaleStartDiff = Vector2.Distance(touch1.position,touch2.position);
 					}
 				}	

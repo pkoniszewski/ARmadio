@@ -25,6 +25,6 @@ public class GlobalVariables
 	public static bool _showInventory = false;
 	
 	public static GameObject arrow = GameObject.Find("Arrow");
-	public static GameObject bulb;
+	public static GameObject bulb = GameObject.Find("Bulb");
 }
 
