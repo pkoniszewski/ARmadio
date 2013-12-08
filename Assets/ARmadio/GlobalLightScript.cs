@@ -61,7 +61,7 @@ public class GlobalLightScript : MonoBehaviour {
 					
 					//Debug.LogError("Light_ x:"+x.ToString()+" y:"+z.ToString());
 					
-					Vector3 tempPos = new Vector3(x,defLight.transform.position.y,z);
+					Vector3 tempPos = new Vector3(x, GlobalVariables.lightHeight, z);
 					
 					defLight.transform.position = tempPos;
 					GlobalVariables.bulb.transform.position = tempPos;

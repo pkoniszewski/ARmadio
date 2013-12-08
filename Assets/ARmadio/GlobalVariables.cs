@@ -28,5 +28,7 @@ public class GlobalVariables
 	public static GameObject bulb = GameObject.Find("Bulb");
 	
 	public static float globalScale = 1.0f;
+	
+	public static float lightHeight;
 }
 

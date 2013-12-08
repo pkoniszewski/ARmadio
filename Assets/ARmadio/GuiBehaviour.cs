@@ -3,7 +3,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class GuiBehaviour : MonoBehaviour {
+public class GuiBehaviour : MonoBehaviour 
+{
 	
 	public GUISkin ARmadioSkin;
 	
@@ -32,6 +33,8 @@ public class GuiBehaviour : MonoBehaviour {
 		go.SetActive(true);
 		GlobalVariables.activeObject = go;
 		GlobalVariables.myList.Add(go);
+		
+		GlobalVariables.lightHeight = go.collider.bounds.size.y + (500 * GlobalVariables.globalScale);
 	}
 	
 	void OnGUI() 
@@ -48,6 +51,7 @@ public class GuiBehaviour : MonoBehaviour {
 			if(GUILayout.Button((Resources.Load("controls_move") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
 			{
 				GlobalVariables._menuState = !GlobalVariables._menuState;
+				GlobalVariables._light = false;
 			}
 		}
 		else if(GlobalVariables._rotate)
@@ -55,6 +59,7 @@ public class GuiBehaviour : MonoBehaviour {
 			if(GUILayout.Button((Resources.Load("controls_rotate") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
 			{
 				GlobalVariables._menuState = !GlobalVariables._menuState;
+				GlobalVariables._light = false;
 			}
 		}
 		else if(GlobalVariables._scale)
@@ -62,6 +67,7 @@ public class GuiBehaviour : MonoBehaviour {
 			if(GUILayout.Button((Resources.Load("controls_scale") as Texture2D), GUILayout.Width (buttonSize), GUILayout.Height (buttonSize)))
 			{
 				GlobalVariables._menuState = !GlobalVariables._menuState;
+				GlobalVariables._light = false;
 			}
 		}
 		else
@@ -193,6 +199,9 @@ public class GuiBehaviour : MonoBehaviour {
 						
 						GlobalVariables.myList.Add(go2.gameObject);
 						GlobalVariables.activeObject = go2.gameObject;
+							
+						if(GlobalVariables.lightHeight < go2.collider.bounds.size.y + (500 * GlobalVariables.globalScale))
+								GlobalVariables.lightHeight = go2.collider.bounds.size.y + (500 * GlobalVariables.globalScale);
 					}
 					else if(GlobalVariables._change)
 					{
@@ -213,6 +222,9 @@ public class GuiBehaviour : MonoBehaviour {
 						DestroyImmediate(GlobalVariables.activeObject);
 						GlobalVariables.myList.Add(go2.gameObject);
 						GlobalVariables.activeObject = go2.gameObject;
+							
+						if(GlobalVariables.lightHeight < go2.collider.bounds.size.y + (500 * GlobalVariables.globalScale))
+								GlobalVariables.lightHeight = go2.collider.bounds.size.y + (500 * GlobalVariables.globalScale);
 					}
 				}
 				}i++;
