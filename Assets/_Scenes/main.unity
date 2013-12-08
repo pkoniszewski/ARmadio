@@ -1641,7 +1641,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 785064515}
   m_GameObject: {fileID: 217710494}
   m_Mesh: {fileID: 4300012, guid: 1ac4b1288ecdde14094bd703798423b6, type: 3}
---- !u!43 &244937941
+--- !u!43 &251345138
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -3285,31 +3285,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1640671976}
   m_GameObject: {fileID: 471913502}
   m_Mesh: {fileID: 4300000, guid: 1ac4b1288ecdde14094bd703798423b6, type: 3}
---- !u!21 &505190980
-Material:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: BasicMarker_scaledMaterial
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: []
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-      data:
-        first:
-          name: _MainTex
-        second:
-          m_Texture: {fileID: 2800000, guid: b1c8404f65404457be0a6440d433f20b, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-    m_Floats: {}
-    m_Colors:
-      data:
-        first:
-          name: _Color
-        second: {r: .820895553, g: .820895553, b: .820895553, a: 1}
 --- !u!1001 &509194077
 Prefab:
   m_ObjectHideFlags: 0
@@ -6082,7 +6057,7 @@ Prefab:
     - target: {fileID: 3300000, guid: 384a0d8cc71cef74a873b3353337ea2c, type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 244937941}
+      objectReference: {fileID: 251345138}
     - target: {fileID: 11400000, guid: 384a0d8cc71cef74a873b3353337ea2c, type: 2}
       propertyPath: mInitializedInEditor
       value: 1
@@ -6098,7 +6073,7 @@ Prefab:
     - target: {fileID: 2300000, guid: 384a0d8cc71cef74a873b3353337ea2c, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 505190980}
+      objectReference: {fileID: 1931282980}
     - target: {fileID: 11400000, guid: 384a0d8cc71cef74a873b3353337ea2c, type: 2}
       propertyPath: mTrackableName
       value: BasicMarker
@@ -9215,7 +9190,7 @@ MeshFilter:
     type: 2}
   m_PrefabInternal: {fileID: 884044691}
   m_GameObject: {fileID: 1303907792}
-  m_Mesh: {fileID: 244937941}
+  m_Mesh: {fileID: 251345138}
 --- !u!114 &1303907798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9260,7 +9235,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 505190980}
+  - {fileID: 1931282980}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -15277,6 +15252,31 @@ Prefab:
   m_RootGameObject: {fileID: 8722624}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!21 &1931282980
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: BasicMarker_scaledMaterial
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: b1c8404f65404457be0a6440d433f20b, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats: {}
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: .820895553, g: .820895553, b: .820895553, a: 1}
 --- !u!1 &1933953375
 GameObject:
   m_ObjectHideFlags: 0
