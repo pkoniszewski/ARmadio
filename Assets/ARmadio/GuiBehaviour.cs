@@ -23,7 +23,7 @@ public class GuiBehaviour : MonoBehaviour {
 		
 		GameObject go = (GameObject)GameObject.Instantiate(GlobalVariables.goList[0]);
 		
-		go.transform.localScale = GlobalVariables.goList[0].transform.lossyScale;
+		go.transform.localScale = GlobalVariables.goList[0].transform.lossyScale * GlobalVariables.globalScale;
         go.transform.localPosition = GlobalVariables.goList[0].transform.position;
         go.transform.localRotation = GlobalVariables.goList[0].transform.rotation;
 		go.transform.parent = GameObject.Find("ImageTarget").transform;
@@ -182,7 +182,7 @@ public class GuiBehaviour : MonoBehaviour {
 						GlobalVariables._add = false;
 						
 						GameObject go2 = (GameObject)GameObject.Instantiate(go);
-						go2.transform.localScale = go.transform.lossyScale;
+						go2.transform.localScale = go.transform.lossyScale * GlobalVariables.globalScale;
 						go2.transform.localRotation = go.transform.rotation;
 						go2.transform.localPosition = go.transform.position;
 						go2.transform.parent = GameObject.Find("ImageTarget").transform;
@@ -200,7 +200,7 @@ public class GuiBehaviour : MonoBehaviour {
 						GlobalVariables._change = false;
 						
 						GameObject go2 = (GameObject)GameObject.Instantiate(go);
-						go2.transform.localScale = go.transform.lossyScale;
+						go2.transform.localScale = go.transform.lossyScale * GlobalVariables.globalScale;
 						go2.transform.localRotation = GlobalVariables.activeObject.transform.rotation;
 						go2.transform.localPosition = GlobalVariables.activeObject.transform.position;
 						go2.transform.parent = GameObject.Find("ImageTarget").transform;

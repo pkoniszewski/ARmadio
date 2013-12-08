@@ -166,10 +166,12 @@ public class TouchBehaviour : MonoBehaviour
 							if(scaleEndDiff > scaleStartDiff) 
 							{
 								obj.transform.localScale *= 1.01f;
+								GlobalVariables.globalScale *= 1.01f;
 							}
 							else
 							{
 								obj.transform.localScale *= 0.99f;
+								GlobalVariables.globalScale *= 0.99f;
 							}
 						}
 						//przepisanie nowych wartosci na poprzednie, zachowuje plynnosc
