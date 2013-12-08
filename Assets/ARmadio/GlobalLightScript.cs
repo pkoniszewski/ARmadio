@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GlobalLightScript : MonoBehaviour {
-	
-	
+public class GlobalLightScript : MonoBehaviour 
+{	
 	private GameObject defLight;
 	private float radius = 150;
 	public GUISkin ARmadioSkin;
@@ -12,16 +11,16 @@ public class GlobalLightScript : MonoBehaviour {
 	private Vector3 imgPos;
 	
 	public float vSliderValue = 400.0F;
-	//public GUIStyle sliderStyle;
 	
 	// Use this for initialization
 	void Start () 
 	{
 		LightOnFunc();
+		/*defLight = CreateLight("default");
+		defLight.transform.position = imgPos;*/
 		screenCenter = new Vector2(Screen.width/2,Screen.height/2);
 		imgPos = GameObject.Find("ImageTarget").transform.position;
 		GlobalVariables.bulb.SetActive(false);
-		
 	}
 	
 	
@@ -29,14 +28,20 @@ public class GlobalLightScript : MonoBehaviour {
 	{
 		GUI.skin = ARmadioSkin;
 		
-		if(GlobalVariables._light) {
-			vSliderValue = GUI.VerticalSlider(new Rect(Screen.width - 50,30, 100, 200), vSliderValue, 1000.0F, 0.0F);	
+		if(GlobalVariables._light) 
+		{
+			vSliderValue = GUI.VerticalSlider(new Rect(Screen.width - 50,30, 100, 200), vSliderValue, 1000.0F, 0.0F);
+			GlobalVariables.bulb.SetActive(true);
 		}
-        
+		else
+		{
+			GlobalVariables.bulb.SetActive(false);
+		}
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		if(GlobalVariables._light)
 		{
 			imgPos = new Vector3(imgPos.x, imgPos.y + 500, imgPos.z);
@@ -48,36 +53,29 @@ public class GlobalLightScript : MonoBehaviour {
 					nowy.x -= screenCenter.x;
 					nowy.y -= screenCenter.y;
 					
-					
-					
 					imgPos = GameObject.Find("ImageTarget").transform.position;
 					
 					float kat = Mathf.Atan2(nowy.y,nowy.x);
 					float plus = 90* Mathf.Deg2Rad;
+					
 					kat += plus;
-					//Debug.LogError("Light2_ kat:"+(kat*Mathf.Rad2Deg).ToString());
+					
 					float x = (float)imgPos.x + radius * Mathf.Cos(kat);
 					float z = (float)imgPos.z + radius * Mathf.Sin(kat);
-					
-					//Debug.LogError("Light_ x:"+x.ToString()+" y:"+z.ToString());
-					
+
 					Vector3 tempPos = new Vector3(x, GlobalVariables.lightHeight, z);
 					
 					defLight.transform.position = tempPos;
 					GlobalVariables.bulb.transform.position = tempPos;
-					
 				}			
 			}
-		
-		
-		defLight.light.range = vSliderValue;
+			defLight.light.range = vSliderValue;
 		}
-		
 	}
 	
-	
 	//stworzenie defaultowego i dodanie na scene nad IT;
-	void LightOnFunc() {	
+	void LightOnFunc() 
+	{	
 			defLight = CreateLight("default");
 			
 			Vector3 temp = imgPos;
@@ -90,19 +88,15 @@ public class GlobalLightScript : MonoBehaviour {
 	
 	
 	//fabryka swiatla ;)
-	GameObject CreateLight(string name){
+	GameObject CreateLight(string name)
+	{
 		GameObject newLight = new GameObject("gLight_"+name);
 		newLight.AddComponent(typeof(Light));
 		
-		//newLight.AddComponent(GameObject.CreatePrimitive(typeof(PrimitiveType.Cube));
 		newLight.light.type = LightType.Point;
 		newLight.light.range = 300.0F;
 		newLight.light.intensity = 5.02F;
-
 		
-		//lightOn = false;
 		return newLight;
-		
-		
 	}
 }
