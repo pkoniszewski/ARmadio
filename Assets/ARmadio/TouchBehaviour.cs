@@ -32,8 +32,9 @@ public class TouchBehaviour : MonoBehaviour
 		
 		if(GlobalVariables._active)
 		{
-			GlobalVariables.arrow.transform.position = new Vector3(moveObj.transform.position.x, moveObj.collider.bounds.extents.y + 500, moveObj.transform.position.z);
+			GlobalVariables.arrow.transform.position = new Vector3(moveObj.transform.position.x, (moveObj.collider.bounds.extents.y + (500) * GlobalVariables.globalScale), moveObj.transform.position.z);
 			GlobalVariables.arrow.SetActive(true);
+			GlobalVariables.arrow.transform.localScale = new Vector3(500, 500, 500) * GlobalVariables.globalScale;
 		}
 		else
 		{

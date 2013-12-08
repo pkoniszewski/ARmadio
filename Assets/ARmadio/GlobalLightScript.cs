@@ -15,9 +15,8 @@ public class GlobalLightScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		LightOnFunc();
-		/*defLight = CreateLight("default");
-		defLight.transform.position = imgPos;*/
+		defLight = CreateLight("default");
+		defLight.transform.position = imgPos;
 		screenCenter = new Vector2(Screen.width/2,Screen.height/2);
 		imgPos = GameObject.Find("ImageTarget").transform.position;
 		GlobalVariables.bulb.SetActive(false);
@@ -71,21 +70,7 @@ public class GlobalLightScript : MonoBehaviour
 			}
 			defLight.light.range = vSliderValue;
 		}
-	}
-	
-	//stworzenie defaultowego i dodanie na scene nad IT;
-	void LightOnFunc() 
-	{	
-			defLight = CreateLight("default");
-			
-			Vector3 temp = imgPos;
-			//temp.y += 500;	
-			//System.Threading.Thread.Sleep(2000);	
-			//temp.y = GlobalVariables.goMaxHeight + 100;
-			//Debug.Log("Light y: "+temp.y.ToString());
-			defLight.transform.position = temp;		
-	}
-	
+	}	
 	
 	//fabryka swiatla ;)
 	GameObject CreateLight(string name)
