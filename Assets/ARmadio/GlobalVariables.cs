@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GlobalVariables
 {
-	//moze da sie to wyjebac?
 	public static List<Transform> transformList = new List<Transform>();
 	
 	//Globalna lista wszystkich dzieci ImageTarget(wszystkich naszych krzesel)

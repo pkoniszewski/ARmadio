@@ -10,7 +10,7 @@ using System.Collections.Generic;
 /// <summary>
 /// A custom handler that implements the ITrackableEventHandler interface.
 /// </summary>
-public class DefaultTrackableEventHandler : MonoBehaviour,
+public class ArmadioTrackableEventHandler : MonoBehaviour,
                                             ITrackableEventHandler
 {
     #region PRIVATE_MEMBER_VARIABLES
