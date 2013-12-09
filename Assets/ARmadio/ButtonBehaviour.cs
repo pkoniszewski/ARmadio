@@ -37,7 +37,7 @@ public class ButtonBehaviour : MonoBehaviour
             Application.Quit();
 		}
 		// Przycisk 'No' ukrywa menu
-		else if (GUI.Button (new Rect(windowWidth/2 + 10,20, windowWidth/2 - 20, windowHeight - 25), "No"))
+		else if (GUI.Button (new Rect(windowWidth/2 + 10,20, windowWidth/2 - 10, windowHeight - 25), "No"))
 		{
 			showQuitWindow = false;
 		}
